@@ -1,0 +1,288 @@
+version: '3.8'
+services:
+  # TMForum APIs
+
+  account:
+    image: docker.io/drllbl18/tmforum-account:sbx_1.5.2
+    container_name: account
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+  agreement:
+    image: docker.io/drllbl18/tmforum-agreement:sbx_1.5.2
+    container_name: agreement
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  customer-bill-management:
+    image: docker.io/drllbl18/tmforum-customer-bill-management:sbx_1.5.2
+    container_name: customer-bill-management
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  customer-management:
+    image: docker.io/drllbl18/tmforum-customer-management:sbx_1.5.2
+    container_name: customer-management
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  party-catalog:
+    image: docker.io/drllbl18/tmforum-party-catalog:sbx_1.5.2
+    container_name: party-catalog
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  party-role:
+    image: docker.io/drllbl18/tmforum-party-role:sbx_1.5.2
+    container_name: party-role
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  product-catalog:
+    image: docker.io/drllbl18/tmforum-product-catalog:sbx_1.5.2
+    container_name: product-catalog
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  product-inventory:
+    image: docker.io/drllbl18/tmforum-product-inventory:sbx_1.5.2
+    container_name: product-inventory
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  product-ordering-management:
+    image: docker.io/drllbl18/tmforum-product-ordering-management:sbx_1.5.2
+    container_name: product-ordering-management
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  quote:
+    image: docker.io/drllbl18/tmforum-quote:sbx_1.5.2
+    container_name: quote
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  resource-catalog:
+    image: docker.io/drllbl18/tmforum-resource-catalog:sbx_1.5.2
+    container_name: resource-catalog
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  resource-function-activation:
+    image: docker.io/drllbl18/tmforum-resource-function-activation:sbx_1.5.2
+    container_name: resource-function-activation
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  resource-inventory:
+    image: docker.io/drllbl18/tmforum-resource-inventory:sbx_1.5.2
+    container_name: resource-inventory
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  service-catalog:
+    image: docker.io/drllbl18/tmforum-service-catalog:sbx_1.5.2
+    container_name: service-catalog
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  service-inventory:
+    image: docker.io/drllbl18/tmforum-service-inventory:sbx_1.5.2
+    container_name: service-inventory
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  usage-management:
+    image: docker.io/drllbl18/tmforum-usage-management:sbx_1.5.2
+    container_name: usage-management
+    restart: always
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+
+
+  # DESMOS
+
+  desmos:
+    image: in2workspace/in2-desmos-api:v2.0.3
+    container_name: desmos
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+      LOGGING_LEVEL_ROOT: "INFO"
+      LOGGING_LEVEL_ES_IN2_DESMOS: "DEBUG"
+      API_VERSION: "v2"
+      SERVER_PORT: "8080"
+      SPRING_R2DBC_URL: "r2dbc:postgresql://pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com/accessnode?ssl=true&sslmode=require"
+      SPRING_R2DBC_USERNAME: "desmosuser"
+      SPRING_R2DBC_PASSWORD: ""
+      SPRING_FLYWAY_URL: "jdbc:postgresql://pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com/accessnode?ssl=true&sslmode=require"
+      OPERATOR_ORGANIZATION_IDENTIFIER: "did:key:zDnaev2NrT2aiJN7CE8hwMuahRJccCYLaWwCGyqDaB5C81FQQ"
+      BROKER_PROVIDER: "scorpio"
+      BROKER_EXTERNAL_DOMAIN: "http://scorpio:9090"
+      BROKER_INTERNAL_DOMAIN: "http://scorpio:9090"
+      NGSI_SUBSCRIPTION_ENTITY_TYPES: ""
+      DLT_ADAPTER_PROVIDER: "digitelts"
+      DLT_ADAPTER_INTERNAL_DOMAIN: "http://dlt-adapter:8080"
+      DLT_ADAPTER_EXTERNAL_DOMAIN: "http://dlt-adapter:8080"
+      TX_SUBSCRIPTION_ENTITY_TYPES: ""
+      EXTERNAL-ACCESS-NODES_URLS: ""
+      API_EXTERNAL_DOMAIN: "https://desmos.dome-marketplace-sbx.org"
+      SECURITY_PRIVATE_KEY: ""
+      SECURITY_LEAR_CREDENTIAL_MACHINE_IN_BASE64: ""
+
+  # DLT-Adapter Alastria
+  dlt-adapter-alastria:
+    image: quay.io/digitelts/dlt-adapter:1.5.1
+    container_name: dlt-adapter-alastria
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      DEBUG: "*"
+      PRIVATE_KEY: ""
+      DOME_EVENTS_CONTRACT_ADDRESS: "0xeBA8507227af9e6DfB8D4575549C52457112C957"
+      DOME_EVENTS_CONTRACT_ABI: "[ { \"anonymous\": false, \"inputs\": [ { \"indexed\": false, \"internalType\": \"uint256\", \"name\": \"index\", \"type\": \"uint256\" }, { \"indexed\": false, \"internalType\": \"uint256\", \"name\": \"timestamp\", \"type\": \"uint256\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"publisherAddress\", \"type\": \"bytes32\" }, { \"indexed\": false, \"internalType\": \"address\", \"name\": \"authorAddress\", \"type\": \"address\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"entityIDHash\", \"type\": \"bytes32\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"previousEntityHash\", \"type\": \"bytes32\" }, { \"indexed\": false, \"internalType\": \"string\", \"name\": \"eventType\", \"type\": \"string\" }, { \"indexed\": false, \"internalType\": \"string\", \"name\": \"dataLocation\", \"type\": \"string\" }, { \"indexed\": false, \"internalType\": \"string[]\", \"name\": \"metadata\", \"type\": \"string[]\" } ], \"name\": \"EventDOMEv1\", \"type\": \"event\" }, { \"anonymous\": false, \"inputs\": [ { \"indexed\": true, \"internalType\": \"address\", \"name\": \"previousOwner\", \"type\": \"address\" }, { \"indexed\": true, \"internalType\": \"address\", \"name\": \"newOwner\", \"type\": \"address\" } ], \"name\": \"OwnershipTransferred\", \"type\": \"event\" }, { \"inputs\": [ { \"internalType\": \"bytes32\", \"name\": \"_publisherAddress\", \"type\": \"bytes32\" }, { \"internalType\": \"address\", \"name\": \"_authorAdress\", \"type\": \"address\" }, { \"internalType\": \"bytes32\", \"name\": \"_entityIDHash\", \"type\": \"bytes32\" }, { \"internalType\": \"bytes32\", \"name\": \"_previousEntityHash\", \"type\": \"bytes32\" }, { \"internalType\": \"string\", \"name\": \"_eventType\", \"type\": \"string\" }, { \"internalType\": \"string\", \"name\": \"_dataLocation\", \"type\": \"string\" }, { \"internalType\": \"string[]\", \"name\": \"_metadata\", \"type\": \"string[]\" } ], \"name\": \"emitNewEvent\", \"outputs\": [ { \"internalType\": \"bool\", \"name\": \"\", \"type\": \"bool\" } ], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"index\", \"outputs\": [ { \"internalType\": \"uint256\", \"name\": \"\", \"type\": \"uint256\" } ], \"stateMutability\": \"view\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"owner\", \"outputs\": [ { \"internalType\": \"address\", \"name\": \"\", \"type\": \"address\" } ], \"stateMutability\": \"view\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"renounceOwnership\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [ { \"internalType\": \"address\", \"name\": \"newOwner\", \"type\": \"address\" } ], \"name\": \"transferOwnership\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" } ]"
+      DOME_PRODUCTION_BLOCK_NUMBER: "118733266"
+      RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
+      ISS: "0x6a2f383855cba0fff292455ccd908c4a08d6c07f5ef139b5afcef4cf62d4798b"
+
+  # DLT-Adapter Hashnet
+  dlt-adapter-hashnet:
+    image: quay.io/digitelts/dlt-adapter:1.5.1
+    container_name: dlt-adapter-hashnet
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      DEBUG: "*"
+      PRIVATE_KEY: ""
+      DOME_EVENTS_CONTRACT_ADDRESS: "0xeBA8507227af9e6DfB8D4575549C52457112C957"
+      DOME_EVENTS_CONTRACT_ABI: "[ { \"anonymous\": false, \"inputs\": [ { \"indexed\": false, \"internalType\": \"uint256\", \"name\": \"index\", \"type\": \"uint256\" }, { \"indexed\": false, \"internalType\": \"uint256\", \"name\": \"timestamp\", \"type\": \"uint256\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"publisherAddress\", \"type\": \"bytes32\" }, { \"indexed\": false, \"internalType\": \"address\", \"name\": \"authorAddress\", \"type\": \"address\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"entityIDHash\", \"type\": \"bytes32\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"previousEntityHash\", \"type\": \"bytes32\" }, { \"indexed\": false, \"internalType\": \"string\", \"name\": \"eventType\", \"type\": \"string\" }, { \"indexed\": false, \"internalType\": \"string\", \"name\": \"dataLocation\", \"type\": \"string\" }, { \"indexed\": false, \"internalType\": \"string[]\", \"name\": \"metadata\", \"type\": \"string[]\" } ], \"name\": \"EventDOMEv1\", \"type\": \"event\" }, { \"anonymous\": false, \"inputs\": [ { \"indexed\": true, \"internalType\": \"address\", \"name\": \"previousOwner\", \"type\": \"address\" }, { \"indexed\": true, \"internalType\": \"address\", \"name\": \"newOwner\", \"type\": \"address\" } ], \"name\": \"OwnershipTransferred\", \"type\": \"event\" }, { \"inputs\": [ { \"internalType\": \"bytes32\", \"name\": \"_publisherAddress\", \"type\": \"bytes32\" }, { \"internalType\": \"address\", \"name\": \"_authorAdress\", \"type\": \"address\" }, { \"internalType\": \"bytes32\", \"name\": \"_entityIDHash\", \"type\": \"bytes32\" }, { \"internalType\": \"bytes32\", \"name\": \"_previousEntityHash\", \"type\": \"bytes32\" }, { \"internalType\": \"string\", \"name\": \"_eventType\", \"type\": \"string\" }, { \"internalType\": \"string\", \"name\": \"_dataLocation\", \"type\": \"string\" }, { \"internalType\": \"string[]\", \"name\": \"_metadata\", \"type\": \"string[]\" } ], \"name\": \"emitNewEvent\", \"outputs\": [ { \"internalType\": \"bool\", \"name\": \"\", \"type\": \"bool\" } ], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"index\", \"outputs\": [ { \"internalType\": \"uint256\", \"name\": \"\", \"type\": \"uint256\" } ], \"stateMutability\": \"view\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"owner\", \"outputs\": [ { \"internalType\": \"address\", \"name\": \"\", \"type\": \"address\" } ], \"stateMutability\": \"view\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"renounceOwnership\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [ { \"internalType\": \"address\", \"name\": \"newOwner\", \"type\": \"address\" } ], \"name\": \"transferOwnership\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" } ]"
+      DOME_PRODUCTION_BLOCK_NUMBER: "118733266"
+      RPC_ADDRESS: "https://jsongw.stagenet.tolar.io/jsonrpc"
+      ISS: "0x43b27fef24cfe8a0b797ed8a36de2884f9963c0c2a0da640e3ec7ad6cd0c493d"
+
+  # Envoy Proxy
+  envoy-proxy:
+    image: envoyproxy/envoy:v1.27-latest
+    container_name: envoy-proxy
+    restart: always
+    ports:
+      - "10000:10000"
+
+  # IED
+  ied:
+    image: dome-ied:latest
+    container_name: ied
+    restart: always
+    ports:
+      - "8080:8080"
+
+  # Redis - Who is responsible for this?
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  # Scorpio
+  scorpio:
+    image: scorpiobroker/all-in-one-runner:java-4.1.10
+    container_name: scorpio
+    restart: always
+    ports:
+      - "9090:9090"
+    environment:
+      DBHOST: "pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com"
+      DBPASS: ""
+      DBUSER: "scorpiouser"
+      POSTGRES_DB: "pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com"
+      POSTGRES_PASSWORD: ""
+      POSTGRES_USER: "scorpiouser"
+      KAFKA_ADVERTISED_HOST_NAME: "kafka"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_PORT: "9092"
+      QUARKUS_LOG_LEVEL: "INFO"
+      QUARKUS_DATASOURCE_DB_KIND: "postgresql"
+      QUARKUS_DATASOURCE_REACTIVE_URL: "postgresql://pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com:5432/ngb?sslmode=require"
+
