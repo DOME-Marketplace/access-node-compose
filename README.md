@@ -27,7 +27,7 @@ services:
       # Ownership & Lifecycle
       - "dome.owner=Altia"
       - "dome.type=service"
-      - "dome.lifecycle=production"
+      - "dome.lifecycle=sandbox"
             
       # Downstream Dependencies and version constraints
       - "dome.dependsOn=component:scorpio,component:auth-service"
