@@ -1,5 +1,6 @@
 version: '3.8'
 services:
+
   # TMForum APIs
 
   account:
@@ -241,7 +242,7 @@ services:
       RPC_ADDRESS: "https://jsongw.stagenet.tolar.io/jsonrpc"
       ISS: "0x43b27fef24cfe8a0b797ed8a36de2884f9963c0c2a0da640e3ec7ad6cd0c493d"
 
-  # Envoy Proxy
+  # Envoy Proxy - Who is responsible for this?
   envoy-proxy:
     image: envoyproxy/envoy:v1.27-latest
     container_name: envoy-proxy
