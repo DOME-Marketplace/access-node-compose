@@ -1,12 +1,12 @@
 # Access Node Docker Compose: component and dependencies description
 
-This README defines the formal requirements for the description of the Docker Compose file which implements a DOME Access Node using Docker Compose. The objective of of this repo is to facilitate an Access Node implementation which is easy to understand, install and operate for those entities external to DOME which wish to use this form of Access Node.
+This README defines the formal requirements for the description of the Docker Compose file which implements a DOME Access Node using Docker Compose. The objective of this repo is to facilitate an Access Node implementation which is easy to understand, install and operate for those entities external to DOME which wish to use this form of Access Node.
 
 To ensure all services remain integrated and documented, we use a metadata-as-code approach, including information about the services and their dependencies directly in the `compose.yaml` file.
 
 Every service defined in this `compose.yaml` **must** include specific labels. These labels allow the generation of documentation and dependency graphs, which can be used to better implement safe and controlled deployments.
 
-These labels are alligned with the [Backstage.io](https://www.google.com/search?q=https://backstage.io) standard, allowing us to use in the future that tool or any similar one to manage the software catalog in DOME.
+These labels are alligned with the [Backstage.io](https://backstage.io) standard, allowing us to use in the future that tool or any similar one to manage the software catalog in DOME.
 
 ---
 
