@@ -448,7 +448,7 @@ services:
       - "dome.owner=Elliot"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn="
+      - "dome.dependsOn=PostgreSQL BBDD"
       - "dome.versions="
     # ports:
     #   - "9090:9090"
