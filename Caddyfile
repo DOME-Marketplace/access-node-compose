@@ -1,0 +1,70 @@
+{
+    # Global options
+}
+
+# Access Node API Gateway
+:80 {
+    # TMForum APIs
+    handle_path /account* {
+        reverse_proxy account:8080
+    }
+    handle_path /agreement* {
+        reverse_proxy agreement:8080
+    }
+    handle_path /customer-bill-management* {
+        reverse_proxy customer-bill-management:8080
+    }
+    handle_path /customer-management* {
+        reverse_proxy customer-management:8080
+    }
+    handle_path /party-catalog* {
+        reverse_proxy party-catalog:8080
+    }
+    handle_path /party-role* {
+        reverse_proxy party-role:8080
+    }
+    handle_path /product-catalog* {
+        reverse_proxy product-catalog:8080
+    }
+    handle_path /product-inventory* {
+        reverse_proxy product-inventory:8080
+    }
+    handle_path /product-ordering-management* {
+        reverse_proxy product-ordering-management:8080
+    }
+    handle_path /quote* {
+        reverse_proxy quote:8080
+    }
+    handle_path /resource-catalog* {
+        reverse_proxy resource-catalog:8080
+    }
+    handle_path /resource-function-activation* {
+        reverse_proxy resource-function-activation:8080
+    }
+    handle_path /resource-inventory* {
+        reverse_proxy resource-inventory:8080
+    }
+    handle_path /service-catalog* {
+        reverse_proxy service-catalog:8080
+    }
+    handle_path /service-inventory* {
+        reverse_proxy service-inventory:8080
+    }
+    handle_path /usage-management* {
+        reverse_proxy usage-management:8080
+    }
+
+    # DESMOS
+    handle_path /desmos* {
+        reverse_proxy desmos:8080
+    }
+
+    # Fallback
+    handle {
+        error "Not Found" 404
+    }
+
+    log {
+        output stdout
+    }
+}

@@ -1,289 +1,496 @@
-version: '3.8'
 services:
 
-  # TMForum APIs
+  # --- TMForum APIs ---
+  # These services provide the standard TMForum Open APIs for DOME.
 
   account:
+    # Service: TMF666 - Account Management
+    # Purpose: Manages user accounts and profiles.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-account:sbx_1.5.2
     container_name: account
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=account"
+      - "dome.description=Manages user accounts and profiles"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
   agreement:
+    # Service: TMF651 - Agreement Management
+    # Purpose: Manages commercial and technical agreements.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-agreement:sbx_1.5.2
     container_name: agreement
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=agreement"
+      - "dome.description=Manages agreements"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   customer-bill-management:
+    # Service: TMF678 - Customer Bill Management
+    # Purpose: Handles invoicing and billing information.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-customer-bill-management:sbx_1.5.2
     container_name: customer-bill-management
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=customer-bill-management"
+      - "dome.description=Handles customer billing"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   customer-management:
+    # Service: TMF629 - Customer Management
+    # Purpose: Manages customer information and lifecycle.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-customer-management:sbx_1.5.2
     container_name: customer-management
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=customer-management"
+      - "dome.description=Manages customer profiles"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   party-catalog:
+    # Service: TMF632 - Party Management
+    # Purpose: Repository for parties (organizations/individuals).
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-party-catalog:sbx_1.5.2
     container_name: party-catalog
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=party-catalog"
+      - "dome.description=Catalog of parties"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   party-role:
+    # Service: TMF669 - Party Role Management
+    # Purpose: Manages the roles played by parties.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-party-role:sbx_1.5.2
     container_name: party-role
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=party-role"
+      - "dome.description=Manages party roles"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   product-catalog:
+    # Service: TMF620 - Product Catalog Management
+    # Purpose: Repository for products and services.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-product-catalog:sbx_1.5.2
     container_name: product-catalog
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=product-catalog"
+      - "dome.description=Catalog of products"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   product-inventory:
+    # Service: TMF637 - Product Inventory Management
+    # Purpose: Manages the inventory of products.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-product-inventory:sbx_1.5.2
     container_name: product-inventory
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=product-inventory"
+      - "dome.description=Manages product inventory"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   product-ordering-management:
+    # Service: TMF622 - Product Ordering Management
+    # Purpose: Manages product orders.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-product-ordering-management:sbx_1.5.2
     container_name: product-ordering-management
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=product-ordering-management"
+      - "dome.description=Manages product orders"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   quote:
+    # Service: TMF648 - Quote Management
+    # Purpose: Manages product quotes.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-quote:sbx_1.5.2
     container_name: quote
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=quote"
+      - "dome.description=Manages quotes"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   resource-catalog:
+    # Service: TMF634 - Resource Catalog Management
+    # Purpose: Repository for resources.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-resource-catalog:sbx_1.5.2
     container_name: resource-catalog
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=resource-catalog"
+      - "dome.description=Catalog of resources"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   resource-function-activation:
+    # Service: TMF664 - Resource Function Activation Management
+    # Purpose: Manages resource function lifecycle.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-resource-function-activation:sbx_1.5.2
     container_name: resource-function-activation
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=resource-function-activation"
+      - "dome.description=Manages resource functions"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   resource-inventory:
+    # Service: TMF639 - Resource Inventory Management
+    # Purpose: Manages resource inventory.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-resource-inventory:sbx_1.5.2
     container_name: resource-inventory
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=resource-inventory"
+      - "dome.description=Manages resource inventory"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   service-catalog:
+    # Service: TMF633 - Service Catalog Management
+    # Purpose: Repository for service definitions.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-service-catalog:sbx_1.5.2
     container_name: service-catalog
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=service-catalog"
+      - "dome.description=Catalog of services"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   service-inventory:
+    # Service: TMF638 - Service Inventory Management
+    # Purpose: Manages service inventory.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-service-inventory:sbx_1.5.2
     container_name: service-inventory
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=service-inventory"
+      - "dome.description=Manages service inventory"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
   usage-management:
+    # Service: TMF635 - Usage Management
+    # Purpose: Manages service usage records.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: docker.io/drllbl18/tmforum-usage-management:sbx_1.5.2
     container_name: usage-management
     restart: always
-    ports:
-      - "8080:8080"
-      - "9090:9090"
+    labels:
+      - "dome.name=usage-management"
+      - "dome.description=Manages service usage"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn="
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
     env_file:
       - .env.tmforum-common
+    networks:
+      - access-node
 
 
-  # DESMOS
+  # --- CORE & DLT ---
+  # These services handle data replication and DLT synchronization.
 
   desmos:
+    # Service: DESMOS
+    # Purpose: Manages replication of data across nodes in the DOME ecosystem.
+    # Internal Ports: 8080 (API)
     image: in2workspace/in2-desmos-api:v2.0.3
     container_name: desmos
     restart: always
-    ports:
-      - "8080:8080"
+    labels:
+      - "dome.name=desmos"
+      - "dome.description=Manages replication of data across nodes"
+      - "dome.owner=Altia"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions=scorpio:any"
+    # ports:
+    #   - "8080:8080"
+    env_file:
+      - .env.desmos
     environment:
-      SPRING_PROFILES_ACTIVE: "dev"
-      LOGGING_LEVEL_ROOT: "INFO"
-      LOGGING_LEVEL_ES_IN2_DESMOS: "DEBUG"
-      API_VERSION: "v2"
-      SERVER_PORT: "8080"
-      SPRING_R2DBC_URL: "r2dbc:postgresql://pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com/accessnode?ssl=true&sslmode=require"
-      SPRING_R2DBC_USERNAME: "desmosuser"
-      SPRING_R2DBC_PASSWORD: ""
-      SPRING_FLYWAY_URL: "jdbc:postgresql://pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com/accessnode?ssl=true&sslmode=require"
-      OPERATOR_ORGANIZATION_IDENTIFIER: "did:key:zDnaev2NrT2aiJN7CE8hwMuahRJccCYLaWwCGyqDaB5C81FQQ"
-      BROKER_PROVIDER: "scorpio"
-      BROKER_EXTERNAL_DOMAIN: "http://scorpio:9090"
-      BROKER_INTERNAL_DOMAIN: "http://scorpio:9090"
-      NGSI_SUBSCRIPTION_ENTITY_TYPES: ""
-      DLT_ADAPTER_PROVIDER: "digitelts"
-      DLT_ADAPTER_INTERNAL_DOMAIN: "http://dlt-adapter:8080"
-      DLT_ADAPTER_EXTERNAL_DOMAIN: "http://dlt-adapter:8080"
-      TX_SUBSCRIPTION_ENTITY_TYPES: ""
       EXTERNAL-ACCESS-NODES_URLS: ""
-      API_EXTERNAL_DOMAIN: "https://desmos.dome-marketplace-sbx.org"
-      SECURITY_PRIVATE_KEY: ""
-      SECURITY_LEAR_CREDENTIAL_MACHINE_IN_BASE64: ""
+    networks:
+      - access-node
 
-  # DLT-Adapter Alastria
   dlt-adapter-alastria:
+    # Service: DLT Adapter Alastria
+    # Purpose: Interface for Alastria DLT.
+    # Internal Ports: 8080 (API)
     image: quay.io/digitelts/dlt-adapter:1.5.1
     container_name: dlt-adapter-alastria
     restart: always
-    ports:
-      - "8080:8080"
-    environment:
-      DEBUG: "*"
-      PRIVATE_KEY: ""
-      DOME_EVENTS_CONTRACT_ADDRESS: "0xeBA8507227af9e6DfB8D4575549C52457112C957"
-      DOME_EVENTS_CONTRACT_ABI: "[ { \"anonymous\": false, \"inputs\": [ { \"indexed\": false, \"internalType\": \"uint256\", \"name\": \"index\", \"type\": \"uint256\" }, { \"indexed\": false, \"internalType\": \"uint256\", \"name\": \"timestamp\", \"type\": \"uint256\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"publisherAddress\", \"type\": \"bytes32\" }, { \"indexed\": false, \"internalType\": \"address\", \"name\": \"authorAddress\", \"type\": \"address\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"entityIDHash\", \"type\": \"bytes32\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"previousEntityHash\", \"type\": \"bytes32\" }, { \"indexed\": false, \"internalType\": \"string\", \"name\": \"eventType\", \"type\": \"string\" }, { \"indexed\": false, \"internalType\": \"string\", \"name\": \"dataLocation\", \"type\": \"string\" }, { \"indexed\": false, \"internalType\": \"string[]\", \"name\": \"metadata\", \"type\": \"string[]\" } ], \"name\": \"EventDOMEv1\", \"type\": \"event\" }, { \"anonymous\": false, \"inputs\": [ { \"indexed\": true, \"internalType\": \"address\", \"name\": \"previousOwner\", \"type\": \"address\" }, { \"indexed\": true, \"internalType\": \"address\", \"name\": \"newOwner\", \"type\": \"address\" } ], \"name\": \"OwnershipTransferred\", \"type\": \"event\" }, { \"inputs\": [ { \"internalType\": \"bytes32\", \"name\": \"_publisherAddress\", \"type\": \"bytes32\" }, { \"internalType\": \"address\", \"name\": \"_authorAdress\", \"type\": \"address\" }, { \"internalType\": \"bytes32\", \"name\": \"_entityIDHash\", \"type\": \"bytes32\" }, { \"internalType\": \"bytes32\", \"name\": \"_previousEntityHash\", \"type\": \"bytes32\" }, { \"internalType\": \"string\", \"name\": \"_eventType\", \"type\": \"string\" }, { \"internalType\": \"string\", \"name\": \"_dataLocation\", \"type\": \"string\" }, { \"internalType\": \"string[]\", \"name\": \"_metadata\", \"type\": \"string[]\" } ], \"name\": \"emitNewEvent\", \"outputs\": [ { \"internalType\": \"bool\", \"name\": \"\", \"type\": \"bool\" } ], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"index\", \"outputs\": [ { \"internalType\": \"uint256\", \"name\": \"\", \"type\": \"uint256\" } ], \"stateMutability\": \"view\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"owner\", \"outputs\": [ { \"internalType\": \"address\", \"name\": \"\", \"type\": \"address\" } ], \"stateMutability\": \"view\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"renounceOwnership\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [ { \"internalType\": \"address\", \"name\": \"newOwner\", \"type\": \"address\" } ], \"name\": \"transferOwnership\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" } ]"
-      DOME_PRODUCTION_BLOCK_NUMBER: "118733266"
-      RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
-      ISS: "0x6a2f383855cba0fff292455ccd908c4a08d6c07f5ef139b5afcef4cf62d4798b"
+    labels:
+      - "dome.name=dlt-adapter-alastria"
+      - "dome.description=Interface for Alastria DLT"
+      - "dome.owner=DigitelTS"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn="
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    env_file:
+      - .env.dlt-adapter-alastria
+    networks:
+      - access-node
 
-  # DLT-Adapter Hashnet
-  dlt-adapter-hashnet:
-    image: quay.io/digitelts/dlt-adapter:1.5.1
-    container_name: dlt-adapter-hashnet
-    restart: always
-    ports:
-      - "8080:8080"
-    environment:
-      DEBUG: "*"
-      PRIVATE_KEY: ""
-      DOME_EVENTS_CONTRACT_ADDRESS: "0xeBA8507227af9e6DfB8D4575549C52457112C957"
-      DOME_EVENTS_CONTRACT_ABI: "[ { \"anonymous\": false, \"inputs\": [ { \"indexed\": false, \"internalType\": \"uint256\", \"name\": \"index\", \"type\": \"uint256\" }, { \"indexed\": false, \"internalType\": \"uint256\", \"name\": \"timestamp\", \"type\": \"uint256\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"publisherAddress\", \"type\": \"bytes32\" }, { \"indexed\": false, \"internalType\": \"address\", \"name\": \"authorAddress\", \"type\": \"address\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"entityIDHash\", \"type\": \"bytes32\" }, { \"indexed\": true, \"internalType\": \"bytes32\", \"name\": \"previousEntityHash\", \"type\": \"bytes32\" }, { \"indexed\": false, \"internalType\": \"string\", \"name\": \"eventType\", \"type\": \"string\" }, { \"indexed\": false, \"internalType\": \"string\", \"name\": \"dataLocation\", \"type\": \"string\" }, { \"indexed\": false, \"internalType\": \"string[]\", \"name\": \"metadata\", \"type\": \"string[]\" } ], \"name\": \"EventDOMEv1\", \"type\": \"event\" }, { \"anonymous\": false, \"inputs\": [ { \"indexed\": true, \"internalType\": \"address\", \"name\": \"previousOwner\", \"type\": \"address\" }, { \"indexed\": true, \"internalType\": \"address\", \"name\": \"newOwner\", \"type\": \"address\" } ], \"name\": \"OwnershipTransferred\", \"type\": \"event\" }, { \"inputs\": [ { \"internalType\": \"bytes32\", \"name\": \"_publisherAddress\", \"type\": \"bytes32\" }, { \"internalType\": \"address\", \"name\": \"_authorAdress\", \"type\": \"address\" }, { \"internalType\": \"bytes32\", \"name\": \"_entityIDHash\", \"type\": \"bytes32\" }, { \"internalType\": \"bytes32\", \"name\": \"_previousEntityHash\", \"type\": \"bytes32\" }, { \"internalType\": \"string\", \"name\": \"_eventType\", \"type\": \"string\" }, { \"internalType\": \"string\", \"name\": \"_dataLocation\", \"type\": \"string\" }, { \"internalType\": \"string[]\", \"name\": \"_metadata\", \"type\": \"string[]\" } ], \"name\": \"emitNewEvent\", \"outputs\": [ { \"internalType\": \"bool\", \"name\": \"\", \"type\": \"bool\" } ], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"index\", \"outputs\": [ { \"internalType\": \"uint256\", \"name\": \"\", \"type\": \"uint256\" } ], \"stateMutability\": \"view\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"owner\", \"outputs\": [ { \"internalType\": \"address\", \"name\": \"\", \"type\": \"address\" } ], \"stateMutability\": \"view\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"renounceOwnership\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [ { \"internalType\": \"address\", \"name\": \"newOwner\", \"type\": \"address\" } ], \"name\": \"transferOwnership\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" } ]"
-      DOME_PRODUCTION_BLOCK_NUMBER: "118733266"
-      RPC_ADDRESS: "https://jsongw.stagenet.tolar.io/jsonrpc"
-      ISS: "0x43b27fef24cfe8a0b797ed8a36de2884f9963c0c2a0da640e3ec7ad6cd0c493d"
-
-  # Envoy Proxy - Who is responsible for this?
-  envoy-proxy:
-    image: envoyproxy/envoy:v1.27-latest
-    container_name: envoy-proxy
-    restart: always
-    ports:
-      - "10000:10000"
-
-  # IED
-  ied:
-    image: dome-ied:latest
-    container_name: ied
-    restart: always
-    ports:
-      - "8080:8080"
-
-  # Redis - Who is responsible for this?
-  redis:
-    image: redis:7-alpine
-    container_name: redis
-    restart: always
-    ports:
-      - "6379:6379"
-
-  # Scorpio
   scorpio:
+    # Service: Scorpio Broker
+    # Purpose: Context Broker for NGSI-LD data.
+    # Internal Ports: 9090
     image: scorpiobroker/all-in-one-runner:java-4.1.10
     container_name: scorpio
     restart: always
+    labels:
+      - "dome.name=scorpio"
+      - "dome.description=NGSI-LD Context Broker"
+      - "dome.owner=Elliot"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn="
+      - "dome.versions="
+    # ports:
+    #   - "9090:9090"
+    env_file:
+      - .env.scorpio
+    networks:
+      - access-node
+
+  # --- API Gateway & Entry Point ---
+  # This service is the SINGLE ENTRY POINT to the entire Access Node stack.
+  # All external traffic MUST pass through this proxy.
+
+  caddy:
+    # Service: Caddy API Gateway
+    # Purpose: Single entry point for all external traffic entering Access Node.
+    # Ports: 80 (HTTP exposed), 443 (HTTPS)
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: always
     ports:
-      - "9090:9090"
-    environment:
-      DBHOST: "pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com"
-      DBPASS: ""
-      DBUSER: "scorpiouser"
-      POSTGRES_DB: "pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com"
-      POSTGRES_PASSWORD: ""
-      POSTGRES_USER: "scorpiouser"
-      KAFKA_ADVERTISED_HOST_NAME: "kafka"
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
-      KAFKA_ADVERTISED_PORT: "9092"
-      QUARKUS_LOG_LEVEL: "INFO"
-      QUARKUS_DATASOURCE_DB_KIND: "postgresql"
-      QUARKUS_DATASOURCE_REACTIVE_URL: "postgresql://pg-75qkrjg6i4d7tlg2.postgresql.de-txl.ionos.com:5432/ngb?sslmode=require"
+      - "80:80"
+      # - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    labels:
+      - "dome.name=caddy"
+      - "dome.description=API Gateway and Reverse Proxy for Access Node"
+      - "dome.owner=Altia"
+      - "dome.type=proxy"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn=component:account,component:agreement,component:customer-bill-management,component:customer-management,component:party-catalog,component:party-role,component:product-catalog,component:product-inventory,component:product-ordering-management,component:quote,component:resource-catalog,component:resource-function-activation,component:resource-inventory,component:service-catalog,component:service-inventory,component:usage-management,component:desmos"
+      - "dome.versions=any"
+    networks:
+      - access-node
+
+networks:
+  access-node:
+    name: access-node
+
+volumes:
+  caddy_data:
+  caddy_config:
 
