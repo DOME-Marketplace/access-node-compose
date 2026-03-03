@@ -442,18 +442,39 @@ services:
     image: scorpiobroker/all-in-one-runner:java-4.1.10
     container_name: scorpio
     restart: always
+    depends_on:
+      - postgres
     labels:
       - "dome.name=scorpio"
       - "dome.description=NGSI-LD Context Broker"
       - "dome.owner=Elliot"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn=PostgreSQL BBDD"
-      - "dome.versions="
-    # ports:
-    #   - "9090:9090"
+      - "dome.dependsOn=component:postgres"
+      - "dome.versions=postgres:any"
+    ports:
+      - "9090:9090"
     env_file:
       - .env.scorpio
+    networks:
+      - access-node
+
+  postgres:
+    # Service: PostgreSQL Database
+    image: postgis/postgis:15-3.4
+    container_name: postgres
+    restart: always
+    labels:
+      - "dome.name=postgres"
+      - "dome.description=PostgreSQL with PostGIS extension"
+      - "dome.owner=Elliot"
+      - "dome.type=database"
+      - "dome.lifecycle=sandbox"
+      - "dome.versions=any"
+    env_file:
+      - .env.scorpio
+    volumes:
+      - ${POSTGRES_DATA_PATH:-pgdata}:/var/lib/postgresql/data
     networks:
       - access-node
 
@@ -493,4 +514,5 @@ networks:
 volumes:
   caddy_data:
   caddy_config:
+  pgdata:
 
