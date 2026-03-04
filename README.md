@@ -2,6 +2,8 @@
 
 This README defines the formal requirements for the description of the Docker Compose file which implements a DOME Access Node using Docker Compose. The objective of this repo is to facilitate an Access Node implementation which is easy to understand, install and operate for those entities external to DOME which wish to use this form of Access Node.
 
+The Docker Compose version of the Access Node is intended to be run externally to the DOME instance, so it should be self-contained and do not require any access to any service inside the DOME instance. The only communication between with the Access Node runnin in the DOME instance is for the replication protocol, implemented by the Desmos service.  
+
 To ensure all services remain integrated and documented, we use a metadata-as-code approach, including information about the services and their dependencies directly in the `compose.yaml` file.
 
 Every service defined in this `compose.yaml` **must** include specific labels. These labels allow the generation of documentation and dependency graphs, which can be used to better implement safe and controlled deployments.
