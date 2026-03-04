@@ -396,22 +396,30 @@ services:
     image: in2workspace/in2-desmos-api:v2.0.3
     container_name: desmos
     restart: always
+    depends_on:
+      - postgres
+      - scorpio
+      - dlt-adapter-alastria
     labels:
       - "dome.name=desmos"
       - "dome.description=Manages replication of data across nodes"
       - "dome.owner=Altia"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:any"
+      - "dome.dependsOn=component:postgres,component:scorpio,component:dlt-adapter-alastria"
+      - "dome.versions=postgres:any,scorpio:any,dlt-adapter-alastria:any"
     # ports:
     #   - "8080:8080"
     env_file:
-      - .env.desmos
-    environment:
-      EXTERNAL-ACCESS-NODES_URLS: ""
+      - .env.desmos  
     networks:
       - access-node
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 40s
 
   dlt-adapter-alastria:
     # Service: DLT Adapter Alastria
@@ -472,9 +480,10 @@ services:
       - "dome.lifecycle=sandbox"
       - "dome.versions=any"
     env_file:
-      - .env.scorpio
+      - .env.postgres
     volumes:
       - ${POSTGRES_DATA_PATH:-pgdata}:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
     networks:
       - access-node
 
