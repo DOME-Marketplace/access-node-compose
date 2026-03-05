@@ -12,10 +12,6 @@ Thumbs.db
 *.log
 *.tmp
 
-# Docker Compose artifacts
-*.env
-.env*
-
 # Asset and build output folders
 assets/*
 !assets/.gitkeep
