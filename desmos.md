@@ -1,11 +1,3 @@
----
-# Desmos Service Configuration Guide
-
-> **Summary:**
-> This guide provides step-by-step instructions for configuring, deploying, and troubleshooting the Desmos data replication service for DOME Access Nodes. Desmos synchronizes NGSI-LD entities across distributed nodes using Distributed Ledger Technology (DLT), ensuring secure and verifiable data replication in the DOME ecosystem.
-
----
-
 # Overview
 
 Desmos is a data replication service designed for DOME Access Nodes. It synchronizes NGSI-LD entities between distributed nodes, leveraging DLT for secure, auditable transactions. The service integrates with the Scorpio Context Broker and exposes a REST API for replication management.
