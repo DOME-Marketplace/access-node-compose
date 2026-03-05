@@ -410,8 +410,37 @@ services:
       - "dome.versions=postgres:any,scorpio:any,dlt-adapter-alastria:any"
     # ports:
     #   - "8080:8080"
+    environment:
+      # Application Configuration
+      API_VERSION: v2
+      SERVER_PORT: 8080
+
+      # Logging Configuration
+      LOGGING_LEVEL_ROOT: INFO
+      LOGGING_LEVEL_ES_IN2_DESMOS: INFO
+      
+      # Database Configuration
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: desmos
+      DB_HOST: postgres
+      DB_PORT: 5432
+      SPRING_R2DBC_URL: r2dbc:postgresql://postgres:5432/desmos
+      SPRING_R2DBC_USERNAME: postgres
+      SPRING_R2DBC_PASSWORD: postgres
+      SPRING_FLYWAY_URL: jdbc:postgresql://postgres:5432/desmos
+      
+      # Context Broker Configuration
+      BROKER_PROVIDER: scorpio
+      BROKER_EXTERNAL_DOMAIN: http://scorpio:9090
+      BROKER_INTERNAL_DOMAIN: http://scorpio:9090
+      
+      # DLT Adapter Configuration
+      DLT_ADAPTER_PROVIDER: digitelts
+      DLT_ADAPTER_INTERNAL_DOMAIN: http://dlt-adapter-alastria:8080
+      DLT_ADAPTER_EXTERNAL_DOMAIN: http://dlt-adapter-alastria:8080
     env_file:
-      - .env.desmos  
+      - .env.desmos
     networks:
       - access-node
     healthcheck:
