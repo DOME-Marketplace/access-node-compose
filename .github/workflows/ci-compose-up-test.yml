@@ -1,0 +1,22 @@
+name: CI - Docker Compose Up Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  compose-up-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Start services
+        run: docker compose -f compose.yaml up -d
+      - name: Wait for containers to be healthy
+        run: |
+          sleep 10
+          docker compose ps
+      - name: Tear down services
+        run: docker compose -f compose.yaml down
