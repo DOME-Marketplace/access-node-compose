@@ -16,10 +16,6 @@ Thumbs.db
 assets/*
 !assets/.gitkeep
 
-# Postgres init scripts (keep SQL files tracked)
-
-# Node/Python (add if detected)
-
 # Misc
 *.bak
 
