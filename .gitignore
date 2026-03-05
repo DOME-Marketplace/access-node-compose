@@ -1,0 +1,32 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Docker Compose artifacts
+*.env
+.env*
+
+# Asset and build output folders
+assets/*
+!assets/.gitkeep
+
+# Postgres init scripts (keep SQL files tracked)
+
+# Node/Python (add if detected)
+
+# Misc
+*.bak
+
+# Ignore everything in postgres-init except SQL files
+postgres-init/*
+!postgres-init/*.sql
