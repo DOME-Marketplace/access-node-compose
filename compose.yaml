@@ -387,6 +387,56 @@ services:
     networks:
       - access-node
 
+  document-management:
+    # Service: TMF667 - Usage Management
+    # Purpose: Manages service usage records.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
+    image: docker.io/drllbl18/tmforum-document-management:sbx_1.5.4
+    container_name: TMF667_document-management
+    restart: always
+    labels:
+      - "dome.name=usage-management"
+      - "dome.description=Manages service usage"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn="
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+    environment:
+        S3_ENDPOINT: "http://minio:9000"
+        S3_ACCESS_KEY: "minioadmin"
+        S3_SECRET_KEY: "minioadmin"
+        S3_BUCKET: "document-attachments"
+    networks:
+      - access-node
+    
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address :9001
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # Web console
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - access-node
+
+
+
 
   # --- CORE & DLT ---
   # These services handle data replication and DLT synchronization.
@@ -526,4 +576,5 @@ volumes:
   caddy_data:
   caddy_config:
   pgdata:
+  minio-data:
 
