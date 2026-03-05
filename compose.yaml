@@ -7,8 +7,8 @@ services:
     # Service: TMF666 - Account Management
     # Purpose: Manages user accounts and profiles.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-account:sbx_1.5.2
-    container_name: account
+    image: docker.io/drllbl18/tmforum-account:sbx_1.5.4
+    container_name: TMF666_account
     restart: always
     labels:
       - "dome.name=account"
@@ -30,8 +30,8 @@ services:
     # Service: TMF651 - Agreement Management
     # Purpose: Manages commercial and technical agreements.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-agreement:sbx_1.5.2
-    container_name: agreement
+    image: docker.io/drllbl18/tmforum-agreement:sbx_1.5.4
+    container_name: TMF651_agreement
     restart: always
     labels:
       - "dome.name=agreement"
@@ -54,8 +54,8 @@ services:
     # Service: TMF678 - Customer Bill Management
     # Purpose: Handles invoicing and billing information.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-customer-bill-management:sbx_1.5.2
-    container_name: customer-bill-management
+    image: docker.io/drllbl18/tmforum-customer-bill-management:sbx_1.5.4
+    container_name: TMF678_customer-bill-management
     restart: always
     labels:
       - "dome.name=customer-bill-management"
@@ -78,8 +78,10 @@ services:
     # Service: TMF629 - Customer Management
     # Purpose: Manages customer information and lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-customer-management:sbx_1.5.2
-    container_name: customer-management
+    image: docker.io/drllbl18/tmforum-customer-management:sbx_1.5.4
+    # Service: TMF629 - Customer Management
+    # Service: TMF629 - Customer Management
+    container_name: TMF629_customer-management
     restart: always
     labels:
       - "dome.name=customer-management"
@@ -102,8 +104,8 @@ services:
     # Service: TMF632 - Party Management
     # Purpose: Repository for parties (organizations/individuals).
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-party-catalog:sbx_1.5.2
-    container_name: party-catalog
+    image: docker.io/drllbl18/tmforum-party-catalog:sbx_1.5.4
+    container_name: TMF632_party-catalog
     restart: always
     labels:
       - "dome.name=party-catalog"
@@ -126,8 +128,8 @@ services:
     # Service: TMF669 - Party Role Management
     # Purpose: Manages the roles played by parties.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-party-role:sbx_1.5.2
-    container_name: party-role
+    image: docker.io/drllbl18/tmforum-party-role:sbx_1.5.4
+    container_name: TMF669_party-role
     restart: always
     labels:
       - "dome.name=party-role"
@@ -150,8 +152,8 @@ services:
     # Service: TMF620 - Product Catalog Management
     # Purpose: Repository for products and services.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-catalog:sbx_1.5.2
-    container_name: product-catalog
+    image: docker.io/drllbl18/tmforum-product-catalog:sbx_1.5.4
+    container_name: TMF620_product-catalog
     restart: always
     labels:
       - "dome.name=product-catalog"
@@ -174,8 +176,8 @@ services:
     # Service: TMF637 - Product Inventory Management
     # Purpose: Manages the inventory of products.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-inventory:sbx_1.5.2
-    container_name: product-inventory
+    image: docker.io/drllbl18/tmforum-product-inventory:sbx_1.5.4
+    container_name: TMF637_product-inventory
     restart: always
     labels:
       - "dome.name=product-inventory"
@@ -198,8 +200,8 @@ services:
     # Service: TMF622 - Product Ordering Management
     # Purpose: Manages product orders.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-ordering-management:sbx_1.5.2
-    container_name: product-ordering-management
+    image: docker.io/drllbl18/tmforum-product-ordering-management:sbx_1.5.4
+    container_name: TMF622_product-ordering-management
     restart: always
     labels:
       - "dome.name=product-ordering-management"
@@ -222,8 +224,8 @@ services:
     # Service: TMF648 - Quote Management
     # Purpose: Manages product quotes.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-quote:sbx_1.5.2
-    container_name: quote
+    image: docker.io/drllbl18/tmforum-quote:sbx_1.5.4
+    container_name: TMF648_quote
     restart: always
     labels:
       - "dome.name=quote"
@@ -246,8 +248,8 @@ services:
     # Service: TMF634 - Resource Catalog Management
     # Purpose: Repository for resources.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-catalog:sbx_1.5.2
-    container_name: resource-catalog
+    image: docker.io/drllbl18/tmforum-resource-catalog:sbx_1.5.4
+    container_name: TMF634_resource-catalog
     restart: always
     labels:
       - "dome.name=resource-catalog"
@@ -270,8 +272,8 @@ services:
     # Service: TMF664 - Resource Function Activation Management
     # Purpose: Manages resource function lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-function-activation:sbx_1.5.2
-    container_name: resource-function-activation
+    image: docker.io/drllbl18/tmforum-resource-function-activation:sbx_1.5.4
+    container_name: TMF664_resource-function-activation
     restart: always
     labels:
       - "dome.name=resource-function-activation"
@@ -294,8 +296,8 @@ services:
     # Service: TMF639 - Resource Inventory Management
     # Purpose: Manages resource inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-inventory:sbx_1.5.2
-    container_name: resource-inventory
+    image: docker.io/drllbl18/tmforum-resource-inventory:sbx_1.5.4
+    container_name: TMF639_resource-inventory
     restart: always
     labels:
       - "dome.name=resource-inventory"
@@ -318,8 +320,8 @@ services:
     # Service: TMF633 - Service Catalog Management
     # Purpose: Repository for service definitions.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-service-catalog:sbx_1.5.2
-    container_name: service-catalog
+    image: docker.io/drllbl18/tmforum-service-catalog:sbx_1.5.4
+    container_name: TMF633_service-catalog
     restart: always
     labels:
       - "dome.name=service-catalog"
@@ -342,8 +344,8 @@ services:
     # Service: TMF638 - Service Inventory Management
     # Purpose: Manages service inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-service-inventory:sbx_1.5.2
-    container_name: service-inventory
+    image: docker.io/drllbl18/tmforum-service-inventory:sbx_1.5.4
+    container_name: TMF638_service-inventory
     restart: always
     labels:
       - "dome.name=service-inventory"
@@ -366,8 +368,8 @@ services:
     # Service: TMF635 - Usage Management
     # Purpose: Manages service usage records.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-usage-management:sbx_1.5.2
-    container_name: usage-management
+    image: docker.io/drllbl18/tmforum-usage-management:sbx_1.5.4
+    container_name: TMF635_usage-management
     restart: always
     labels:
       - "dome.name=usage-management"
@@ -384,6 +386,56 @@ services:
       - .env.tmforum-common
     networks:
       - access-node
+
+  document-management:
+    # Service: TMF667 - Usage Management
+    # Purpose: Manages service usage records.
+    # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
+    image: docker.io/drllbl18/tmforum-document-management:sbx_1.5.4
+    container_name: TMF667_document-management
+    restart: always
+    labels:
+      - "dome.name=usage-management"
+      - "dome.description=Manages service usage"
+      - "dome.owner=Libelium"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn="
+      - "dome.versions="
+    # ports:
+    #   - "8080:8080"
+    #   - "9090:9090"
+    env_file:
+      - .env.tmforum-common
+    environment:
+        S3_ENDPOINT: "http://minio:9000"
+        S3_ACCESS_KEY: "minioadmin"
+        S3_SECRET_KEY: "minioadmin"
+        S3_BUCKET: "document-attachments"
+    networks:
+      - access-node
+    
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address :9001
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # Web console
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - access-node
+
+
 
 
   # --- CORE & DLT ---
@@ -524,4 +576,5 @@ volumes:
   caddy_data:
   caddy_config:
   pgdata:
+  minio-data:
 
