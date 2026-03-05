@@ -1,54 +1,59 @@
+---
 # Desmos Service Configuration Guide
+
+> **Summary:**
+> This guide provides step-by-step instructions for configuring, deploying, and troubleshooting the Desmos data replication service for DOME Access Nodes. Desmos synchronizes NGSI-LD entities across distributed nodes using Distributed Ledger Technology (DLT), ensuring secure and verifiable data replication in the DOME ecosystem.
+
+---
 
 ## Overview
 
-Desmos is the data replication service for DOME Access Nodes. It manages synchronization of NGSI-LD entities across distributed nodes in the DOME ecosystem using the Distributed Ledger Technology (DLT) layer. This guide walks you through the complete setup and configuration process.
+Desmos is a data replication service designed for DOME Access Nodes. It synchronizes NGSI-LD entities between distributed nodes, leveraging DLT for secure, auditable transactions. The service integrates with the Scorpio Context Broker and exposes a REST API for replication management.
 
-**Key capabilities:**
+**Key Capabilities:**
 
-- Replicates data across DOME Access Nodes
-- Interfaces with the Scorpio Context Broker (NGSI-LD)
-- Leverages DLT for secure, verifiable transactions
-- Provides REST API for replication management
+- Data replication across DOME Access Nodes
+- Integration with Scorpio Context Broker (NGSI-LD)
+- Secure, verifiable transactions via DLT
+- REST API for replication management
 
 ---
 
 ## Table of Contents
 
-- [Desmos Service Configuration Guide](#desmos-service-configuration-guide)
-  - [Overview](#overview)
-  - [Table of Contents](#table-of-contents)
-  - [Prerequisites](#prerequisites)
-  - [Configuration Steps](#configuration-steps)
-    - [Step 1: Obtain LEARCredentialMachine](#step-1-obtain-learcredentialmachine)
-    - [Step 2: Generate DLT Keys](#step-2-generate-dlt-keys)
-    - [Step 3: Register with DOME Trust Framework](#step-3-register-with-dome-trust-framework)
-      - [3.1. Register as a Trusted Access Node](#31-register-as-a-trusted-access-node)
-      - [3.2. Register as a Trusted Service](#32-register-as-a-trusted-service)
-    - [Step 4: Configure Environment Variables](#step-4-configure-environment-variables)
-      - [Required Configuration Variables](#required-configuration-variables)
-      - [Environment Profile Mapping](#environment-profile-mapping)
-      - [Configuration Examples](#configuration-examples)
-    - [Step 5: Configure Secrets](#step-5-configure-secrets)
-      - [Required Secret Variables](#required-secret-variables)
-      - [Configuration Examples](#configuration-examples-1)
-  - [Deployment](#deployment)
-    - [Start All Services](#start-all-services)
-    - [View Logs](#view-logs)
-    - [Stop Services](#stop-services)
-  - [Verification](#verification)
-    - [1. Check Service Health](#1-check-service-health)
-    - [2. Check Container Status](#2-check-container-status)
-    - [3. Review Startup Logs](#3-review-startup-logs)
-    - [4. Test via Caddy Proxy](#4-test-via-caddy-proxy)
-  - [Troubleshooting](#troubleshooting)
-    - [Database Connection Errors](#database-connection-errors)
-    - [Invalid Credentials / Private Key Format](#invalid-credentials--private-key-format)
-    - [DLT Adapter Connectivity Issues](#dlt-adapter-connectivity-issues)
-    - [Missing Environment Variables](#missing-environment-variables)
-    - [Port Conflicts](#port-conflicts)
-  - [Related Documentation](#related-documentation)
-  - [Support](#support)
+- [Overview](#overview)
+- [Table of Contents](#table-of-contents)
+- [Prerequisites](#prerequisites)
+- [Configuration Steps](#configuration-steps)
+  - [Step 1: Obtain LEARCredentialMachine](#step-1-obtain-learcredentialmachine)
+  - [Step 2: Generate DLT Keys](#step-2-generate-dlt-keys)
+  - [Step 3: Register with DOME Trust Framework](#step-3-register-with-dome-trust-framework)
+    - [3.1. Register as a Trusted Access Node](#31-register-as-a-trusted-access-node)
+    - [3.2. Register as a Trusted Service](#32-register-as-a-trusted-service)
+  - [Step 4: Configure Environment Variables](#step-4-configure-environment-variables)
+    - [Required Configuration Variables](#required-configuration-variables)
+    - [Environment Profile Mapping](#environment-profile-mapping)
+    - [Configuration Examples](#configuration-examples)
+  - [Step 5: Configure Secrets](#step-5-configure-secrets)
+    - [Required Secret Variables](#required-secret-variables)
+    - [Configuration Examples](#configuration-examples-1)
+- [Deployment](#deployment)
+  - [Start All Services](#start-all-services)
+  - [View Logs](#view-logs)
+  - [Stop Services](#stop-services)
+- [Verification](#verification)
+  - [1. Check Service Health](#1-check-service-health)
+  - [2. Check Container Status](#2-check-container-status)
+  - [3. Review Startup Logs](#3-review-startup-logs)
+  - [4. Test via Caddy Proxy](#4-test-via-caddy-proxy)
+- [Troubleshooting](#troubleshooting)
+  - [Database Connection Errors](#database-connection-errors)
+  - [Invalid Credentials / Private Key Format](#invalid-credentials--private-key-format)
+  - [DLT Adapter Connectivity Issues](#dlt-adapter-connectivity-issues)
+  - [Missing Environment Variables](#missing-environment-variables)
+  - [Port Conflicts](#port-conflicts)
+- [Related Documentation](#related-documentation)
+- [Support](#support)
 
 ---
 
