@@ -6,7 +6,7 @@
 
 ---
 
-## Overview
+# Overview
 
 Desmos is a data replication service designed for DOME Access Nodes. It synchronizes NGSI-LD entities between distributed nodes, leveraging DLT for secure, auditable transactions. The service integrates with the Scorpio Context Broker and exposes a REST API for replication management.
 
@@ -22,38 +22,38 @@ Desmos is a data replication service designed for DOME Access Nodes. It synchron
 ## Table of Contents
 
 - [Overview](#overview)
-- [Table of Contents](#table-of-contents)
-- [Prerequisites](#prerequisites)
-- [Configuration Steps](#configuration-steps)
-  - [Step 1: Obtain LEARCredentialMachine](#step-1-obtain-learcredentialmachine)
-  - [Step 2: Generate DLT Keys](#step-2-generate-dlt-keys)
-  - [Step 3: Register with DOME Trust Framework](#step-3-register-with-dome-trust-framework)
-    - [3.1. Register as a Trusted Access Node](#31-register-as-a-trusted-access-node)
-    - [3.2. Register as a Trusted Service](#32-register-as-a-trusted-service)
-  - [Step 4: Configure Environment Variables](#step-4-configure-environment-variables)
-    - [Required Configuration Variables](#required-configuration-variables)
-    - [Environment Profile Mapping](#environment-profile-mapping)
-    - [Configuration Examples](#configuration-examples)
-  - [Step 5: Configure Secrets](#step-5-configure-secrets)
-    - [Required Secret Variables](#required-secret-variables)
-    - [Configuration Examples](#configuration-examples-1)
-- [Deployment](#deployment)
-  - [Start All Services](#start-all-services)
-  - [View Logs](#view-logs)
-  - [Stop Services](#stop-services)
-- [Verification](#verification)
-  - [1. Check Service Health](#1-check-service-health)
-  - [2. Check Container Status](#2-check-container-status)
-  - [3. Review Startup Logs](#3-review-startup-logs)
-  - [4. Test via Caddy Proxy](#4-test-via-caddy-proxy)
-- [Troubleshooting](#troubleshooting)
-  - [Database Connection Errors](#database-connection-errors)
-  - [Invalid Credentials / Private Key Format](#invalid-credentials--private-key-format)
-  - [DLT Adapter Connectivity Issues](#dlt-adapter-connectivity-issues)
-  - [Missing Environment Variables](#missing-environment-variables)
-  - [Port Conflicts](#port-conflicts)
-- [Related Documentation](#related-documentation)
-- [Support](#support)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+  - [Configuration Steps](#configuration-steps)
+    - [Step 1: Obtain LEARCredentialMachine](#step-1-obtain-learcredentialmachine)
+    - [Step 2: Generate DLT Keys](#step-2-generate-dlt-keys)
+    - [Step 3: Register with DOME Trust Framework](#step-3-register-with-dome-trust-framework)
+      - [3.1. Register as a Trusted Access Node](#31-register-as-a-trusted-access-node)
+      - [3.2. Register as a Trusted Service](#32-register-as-a-trusted-service)
+    - [Step 4: Configure Environment Variables](#step-4-configure-environment-variables)
+      - [Required Configuration Variables](#required-configuration-variables)
+      - [Environment Profile Mapping](#environment-profile-mapping)
+      - [Environment Variables Configuration Examples](#environment-variables-configuration-examples)
+    - [Step 5: Configure Secrets](#step-5-configure-secrets)
+      - [Required Secret Variables](#required-secret-variables)
+      - [Secrets Configuration Examples](#secrets-configuration-examples)
+  - [Deployment](#deployment)
+    - [Start All Services](#start-all-services)
+    - [View Logs](#view-logs)
+    - [Stop Services](#stop-services)
+  - [Verification](#verification)
+    - [1. Check Service Health](#1-check-service-health)
+    - [2. Check Container Status](#2-check-container-status)
+    - [3. Review Startup Logs](#3-review-startup-logs)
+    - [4. Test via Caddy Proxy](#4-test-via-caddy-proxy)
+  - [Troubleshooting](#troubleshooting)
+    - [Database Connection Errors](#database-connection-errors)
+    - [Invalid Credentials / Private Key Format](#invalid-credentials--private-key-format)
+    - [DLT Adapter Connectivity Issues](#dlt-adapter-connectivity-issues)
+    - [Missing Environment Variables](#missing-environment-variables)
+    - [Port Conflicts](#port-conflicts)
+  - [Related Documentation](#related-documentation)
+  - [Support](#support)
 
 ---
 
@@ -188,7 +188,7 @@ Choose the correct Spring profile for your target DOME environment:
 |                  `test`                   |  **dev** (Development)   | QA environment                              |
 |                  `prod`                   |   **prd** (Production)   | Production environment                      |
 
-#### Configuration Examples
+#### Environment Variables Configuration Examples
 
 **Sandbox (Development):**
 
@@ -231,7 +231,7 @@ Add secrets to provide sensitive credentials.
 | `SECURITY_PRIVATE_KEY`                       | Private key for cryptographic signing | Generated in Step 2       |
 | `SECURITY_LEAR_CREDENTIAL_MACHINE_IN_BASE64` | Base64-encoded LEARCredentialMachine  | From your wallet (Step 1) |
 
-#### Configuration Examples
+#### Secrets Configuration Examples
 
 **Private Key:**
 
@@ -337,16 +337,13 @@ curl http://localhost/desmos/health
 
 **Symptom:**
 
-```
-Error: Connection refused - postgis:5432
-```
+> Error: Connection refused - postgis:5432
 
 **Solutions:**
 
 1. Ensure PostgreSQL is running: `docker compose ps postgis`
-2. Verify database credentials in `.env.desmos` match PostgreSQL configuration
-3. Check database initialization: `docker compose logs postgis`
-4. Confirm the network connectivity: `docker compose exec desmos ping postgis`
+2. Check database initialization: `docker compose logs postgis`
+3. Confirm the network connectivity: `docker compose exec desmos ping postgis`
 
 ---
 
@@ -354,10 +351,8 @@ Error: Connection refused - postgis:5432
 
 **Symptom:**
 
-```
-Error: Invalid private key format
-Error: Failed to decode LEAR credential
-```
+> Error: Invalid private key format
+> Error: Failed to decode LEAR credential
 
 **Solutions:**
 
@@ -383,10 +378,8 @@ Error: Failed to decode LEAR credential
 
 **Symptom:**
 
-```
-Error: Connection timeout - dlt-adapter-alastria:8080
-Error: DLT transaction failed
-```
+> Error: Connection timeout - dlt-adapter-alastria:8080
+> Error: DLT transaction failed
 
 **Solutions:**
 
@@ -401,9 +394,7 @@ Error: DLT transaction failed
 
 **Symptom:**
 
-```
-Error: Required property 'OPERATOR_ORGANIZATION_IDENTIFIER' is not set
-```
+> Error: Required property 'OPERATOR_ORGANIZATION_IDENTIFIER' is not set
 
 **Solutions:**
 
@@ -419,9 +410,7 @@ Error: Required property 'OPERATOR_ORGANIZATION_IDENTIFIER' is not set
 
 **Symptom:**
 
-```
-Error: Bind for 0.0.0.0:8080 failed: port is already allocated
-```
+> Error: Bind for 0.0.0.0:8080 failed: port is already allocated
 
 **Solutions:**
 
