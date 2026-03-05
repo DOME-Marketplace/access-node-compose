@@ -7,7 +7,7 @@ services:
     # Service: TMF666 - Account Management
     # Purpose: Manages user accounts and profiles.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-account:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-account:sbx_1.5.4
     container_name: account
     restart: always
     labels:
@@ -30,7 +30,7 @@ services:
     # Service: TMF651 - Agreement Management
     # Purpose: Manages commercial and technical agreements.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-agreement:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-agreement:sbx_1.5.4
     container_name: agreement
     restart: always
     labels:
@@ -54,7 +54,7 @@ services:
     # Service: TMF678 - Customer Bill Management
     # Purpose: Handles invoicing and billing information.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-customer-bill-management:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-customer-bill-management:sbx_1.5.4
     container_name: customer-bill-management
     restart: always
     labels:
@@ -78,7 +78,7 @@ services:
     # Service: TMF629 - Customer Management
     # Purpose: Manages customer information and lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-customer-management:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-customer-management:sbx_1.5.4
     container_name: customer-management
     restart: always
     labels:
@@ -102,7 +102,7 @@ services:
     # Service: TMF632 - Party Management
     # Purpose: Repository for parties (organizations/individuals).
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-party-catalog:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-party-catalog:sbx_1.5.4
     container_name: party-catalog
     restart: always
     labels:
@@ -126,7 +126,7 @@ services:
     # Service: TMF669 - Party Role Management
     # Purpose: Manages the roles played by parties.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-party-role:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-party-role:sbx_1.5.4
     container_name: party-role
     restart: always
     labels:
@@ -150,7 +150,7 @@ services:
     # Service: TMF620 - Product Catalog Management
     # Purpose: Repository for products and services.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-catalog:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-product-catalog:sbx_1.5.4
     container_name: product-catalog
     restart: always
     labels:
@@ -174,7 +174,7 @@ services:
     # Service: TMF637 - Product Inventory Management
     # Purpose: Manages the inventory of products.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-inventory:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-product-inventory:sbx_1.5.4
     container_name: product-inventory
     restart: always
     labels:
@@ -198,7 +198,7 @@ services:
     # Service: TMF622 - Product Ordering Management
     # Purpose: Manages product orders.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-ordering-management:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-product-ordering-management:sbx_1.5.4
     container_name: product-ordering-management
     restart: always
     labels:
@@ -222,7 +222,7 @@ services:
     # Service: TMF648 - Quote Management
     # Purpose: Manages product quotes.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-quote:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-quote:sbx_1.5.4
     container_name: quote
     restart: always
     labels:
@@ -246,7 +246,7 @@ services:
     # Service: TMF634 - Resource Catalog Management
     # Purpose: Repository for resources.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-catalog:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-resource-catalog:sbx_1.5.4
     container_name: resource-catalog
     restart: always
     labels:
@@ -270,7 +270,7 @@ services:
     # Service: TMF664 - Resource Function Activation Management
     # Purpose: Manages resource function lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-function-activation:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-resource-function-activation:sbx_1.5.4
     container_name: resource-function-activation
     restart: always
     labels:
@@ -294,7 +294,7 @@ services:
     # Service: TMF639 - Resource Inventory Management
     # Purpose: Manages resource inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-inventory:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-resource-inventory:sbx_1.5.4
     container_name: resource-inventory
     restart: always
     labels:
@@ -318,7 +318,7 @@ services:
     # Service: TMF633 - Service Catalog Management
     # Purpose: Repository for service definitions.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-service-catalog:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-service-catalog:sbx_1.5.4
     container_name: service-catalog
     restart: always
     labels:
@@ -342,7 +342,7 @@ services:
     # Service: TMF638 - Service Inventory Management
     # Purpose: Manages service inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-service-inventory:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-service-inventory:sbx_1.5.4
     container_name: service-inventory
     restart: always
     labels:
@@ -366,7 +366,7 @@ services:
     # Service: TMF635 - Usage Management
     # Purpose: Manages service usage records.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-usage-management:sbx_1.5.2
+    image: docker.io/drllbl18/tmforum-usage-management:sbx_1.5.4
     container_name: usage-management
     restart: always
     labels:
