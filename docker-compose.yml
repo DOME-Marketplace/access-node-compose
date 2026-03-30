@@ -1,0 +1,112 @@
+# Docker Compose for LOCAL development environment
+# Usage: docker-compose --env-file .env up -d
+
+services:
+  scorpio-db:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: scorpio-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - scorpio-db-data:/var/lib/postgresql/data
+
+  scorpio:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: scorpio
+    ports:
+      - "9090:9090"
+
+  desmos-db:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: desmos-db
+    ports:
+      - "5433:5432"
+    volumes:
+      - desmos-db-data:/var/lib/postgresql/data
+
+  desmos:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: desmos
+    ports:
+      - "8081:8080"
+    environment:
+      # Override with dev settings
+      SPRING_PROFILES_ACTIVE: dev
+      LOGGING_LEVEL_ROOT: DEBUG
+      # For local development, use internal Docker network addresses
+      DLT-ADAPTER_EXTERNALDOMAIN: http://dlt-adapter:8080
+      API_EXTERNALDOMAIN: http://localhost:8081
+
+  dlt-adapter:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: dlt-adapter
+    ports:
+      - "8082:8080"
+    environment:
+      # Override with dev settings
+      LOG_LEVEL: debug
+
+  redis:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  # TMForum APIs (accessed via Nginx proxy)
+  tmforum-product-catalog:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: tmforum-product-catalog
+    # ports:
+    #   - "8083:8080"  # Direct access disabled - use tmforum-proxy instead
+
+  tmforum-party-catalog:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: tmforum-party-catalog
+    # ports:
+    #   - "8084:8080"  # Direct access disabled - use tmforum-proxy instead
+
+  tmforum-product-ordering:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: tmforum-product-ordering
+    # ports:
+    #   - "8085:8080"  # Direct access disabled - use tmforum-proxy instead
+
+  tmforum-service-catalog:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: tmforum-service-catalog
+    # ports:
+    #   - "8086:8080"  # Direct access disabled - use tmforum-proxy instead
+
+  # Nginx Reverse Proxy - Single entry point for all TMForum APIs
+  tmforum-proxy:
+    extends:
+      file: ./shared/docker-compose.base.yml
+      service: tmforum-proxy
+    ports:
+      - "8090:8080"  # TMForum API Gateway
+    environment:
+      # For local development logging
+      NGINX_ENTRYPOINT_QUIET_LOGS: ""
+
+volumes:
+  scorpio-db-data:
+    name: ${COMPOSE_PROJECT_NAME}_scorpio_db_local
+  desmos-db-data:
+    name: ${COMPOSE_PROJECT_NAME}_desmos_db_local
+  redis-data:
+    name: ${COMPOSE_PROJECT_NAME}_redis_local
+
+networks:
+  default:
