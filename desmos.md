@@ -1,6 +1,8 @@
 # Overview
 
-Desmos is a data replication service designed for DOME Access Nodes. It synchronizes NGSI-LD entities between distributed nodes, leveraging DLT for secure, auditable transactions. The service integrates with the Scorpio Context Broker and exposes a REST API for replication management.
+Desmos is a data replication service designed for DOME Access Nodes. It synchronizes NGSI-LD entities between
+distributed nodes, leveraging DLT for secure, auditable transactions. The service integrates with the Scorpio Context
+Broker and exposes a REST API for replication management.
 
 **Key Capabilities:**
 
@@ -14,38 +16,38 @@ Desmos is a data replication service designed for DOME Access Nodes. It synchron
 ## Table of Contents
 
 - [Overview](#overview)
-  - [Table of Contents](#table-of-contents)
-  - [Prerequisites](#prerequisites)
-  - [Configuration Steps](#configuration-steps)
-    - [Step 1: Obtain LEARCredentialMachine](#step-1-obtain-learcredentialmachine)
-    - [Step 2: Generate DLT Keys](#step-2-generate-dlt-keys)
-    - [Step 3: Register with DOME Trust Framework](#step-3-register-with-dome-trust-framework)
-      - [3.1. Register as a Trusted Access Node](#31-register-as-a-trusted-access-node)
-      - [3.2. Register as a Trusted Service](#32-register-as-a-trusted-service)
-    - [Step 4: Configure Environment Variables](#step-4-configure-environment-variables)
-      - [Required Configuration Variables](#required-configuration-variables)
-      - [Environment Profile Mapping](#environment-profile-mapping)
-      - [Environment Variables Configuration Examples](#environment-variables-configuration-examples)
-    - [Step 5: Configure Secrets](#step-5-configure-secrets)
-      - [Required Secret Variables](#required-secret-variables)
-      - [Secrets Configuration Examples](#secrets-configuration-examples)
-  - [Deployment](#deployment)
-    - [Start All Services](#start-all-services)
-    - [View Logs](#view-logs)
-    - [Stop Services](#stop-services)
-  - [Verification](#verification)
-    - [1. Check Service Health](#1-check-service-health)
-    - [2. Check Container Status](#2-check-container-status)
-    - [3. Review Startup Logs](#3-review-startup-logs)
-    - [4. Test via Caddy Proxy](#4-test-via-caddy-proxy)
-  - [Troubleshooting](#troubleshooting)
-    - [Database Connection Errors](#database-connection-errors)
-    - [Invalid Credentials / Private Key Format](#invalid-credentials--private-key-format)
-    - [DLT Adapter Connectivity Issues](#dlt-adapter-connectivity-issues)
-    - [Missing Environment Variables](#missing-environment-variables)
-    - [Port Conflicts](#port-conflicts)
-  - [Related Documentation](#related-documentation)
-  - [Support](#support)
+    - [Table of Contents](#table-of-contents)
+    - [Prerequisites](#prerequisites)
+    - [Configuration Steps](#configuration-steps)
+        - [Step 1: Obtain LEARCredentialMachine](#step-1-obtain-learcredentialmachine)
+        - [Step 2: Generate DLT Keys](#step-2-generate-dlt-keys)
+        - [Step 3: Register with DOME Trust Framework](#step-3-register-with-dome-trust-framework)
+            - [3.1. Register as a Trusted Access Node](#31-register-as-a-trusted-access-node)
+            - [3.2. Register as a Trusted Service](#32-register-as-a-trusted-service)
+        - [Step 4: Configure Environment Variables](#step-4-configure-environment-variables)
+            - [Required Configuration Variables](#required-configuration-variables)
+            - [Environment Profile Mapping](#environment-profile-mapping)
+            - [Environment Variables Configuration Examples](#environment-variables-configuration-examples)
+        - [Step 5: Configure Secrets](#step-5-configure-secrets)
+            - [Required Secret Variables](#required-secret-variables)
+            - [Secrets Configuration Examples](#secrets-configuration-examples)
+    - [Deployment](#deployment)
+        - [Start All Services](#start-all-services)
+        - [View Logs](#view-logs)
+        - [Stop Services](#stop-services)
+    - [Verification](#verification)
+        - [1. Check Service Health](#1-check-service-health)
+        - [2. Check Container Status](#2-check-container-status)
+        - [3. Review Startup Logs](#3-review-startup-logs)
+        - [4. Test via Caddy Proxy](#4-test-via-caddy-proxy)
+    - [Troubleshooting](#troubleshooting)
+        - [Database Connection Errors](#database-connection-errors)
+        - [Invalid Credentials / Private Key Format](#invalid-credentials--private-key-format)
+        - [DLT Adapter Connectivity Issues](#dlt-adapter-connectivity-issues)
+        - [Missing Environment Variables](#missing-environment-variables)
+        - [Port Conflicts](#port-conflicts)
+    - [Related Documentation](#related-documentation)
+    - [Support](#support)
 
 ---
 
@@ -64,7 +66,8 @@ Before configuring Desmos, ensure you have:
 
 ### Step 1: Obtain LEARCredentialMachine
 
-Request a **LEARCredentialMachine** from your organization's Legal Entity Appointed Representative (LEAR). This credential:
+Request a **LEARCredentialMachine** from your organization's Legal Entity Appointed Representative (LEAR). This
+credential:
 
 - Contains your organization's DID (Decentralized Identifier)
 - Includes private key for authentication
@@ -78,9 +81,9 @@ Use the **DOME Access Node Key Generator** to generate your DLT address and othe
 1. Navigate to the DOME Access Node Key Generator
 2. Enter your DID key from the LEARCredentialMachine
 3. Generate and securely store the following:
-   - **DLT Private Key**
-   - **DLT Address**
-   - **DLT ISS**
+    - **DLT Private Key**
+    - **DLT Address**
+    - **DLT ISS**
 
 **Screenshots:**
 
@@ -112,6 +115,12 @@ Register your organization and service with the DOME Trust Framework for your ta
 
 Add your organization to the **Trusted Access Node List** following the DOME Trust Framework instructions.
 
+| **Links**                                                                                               |
+|---------------------------------------------------------------------------------------------------------|
+| [SBX](https://github.com/DOME-Marketplace/trust-framework/blob/main/sbx/trusted_access_nodes_list.yaml) |
+| [DEV](https://github.com/DOME-Marketplace/trust-framework/blob/main/dev/trusted_access_nodes_list.yaml) |
+| [PRD](https://github.com/DOME-Marketplace/trust-framework/blob/main/prd/trusted_access_nodes_list.yaml) |
+
 **YAML Template:**
 
 ```yaml
@@ -136,16 +145,22 @@ Add your organization to the **Trusted Access Node List** following the DOME Tru
 
 Add your Desmos service to the **Trusted Services List** following the DOME Trust Framework instructions.
 
+| **Links**                                                                                           |
+|-----------------------------------------------------------------------------------------------------|
+| [SBX](https://github.com/DOME-Marketplace/trust-framework/blob/main/sbx/trusted_services_list.yaml) |
+| [DEV](https://github.com/DOME-Marketplace/trust-framework/blob/main/dev/trusted_services_list.yaml) |
+| [PRD](https://github.com/DOME-Marketplace/trust-framework/blob/main/prd/trusted_services_list.yaml) |
+
 **YAML Template:**
 
 ```yaml
 # Add to the Trusted Services List
 - clientId: "<did:key>"
-  redirectUris: []
-  scopes: []
-  clientAuthenticationMethods: ["client_secret_jwt"]
-  authorizationGrantTypes: ["client_credentials"]
-  postLogoutRedirectUris: []
+  redirectUris: [ ]
+  scopes: [ ]
+  clientAuthenticationMethods: [ "client_secret_jwt" ]
+  authorizationGrantTypes: [ "client_credentials" ]
+  postLogoutRedirectUris: [ ]
   requireAuthorizationConsent: false
   requireProofKey: false
   jwkSetUrl: "https://verifier.dome-marketplace-<env>.org/oidc/did/<did:key>"
@@ -165,7 +180,7 @@ Edit the `.env.desmos` file in the repository root to configure Desmos for your 
 #### Required Configuration Variables
 
 | Variable                           | Description                                        | Example Value                |
-| ---------------------------------- | -------------------------------------------------- | ---------------------------- |
+|------------------------------------|----------------------------------------------------|------------------------------|
 | `SPRING_PROFILES_ACTIVE`           | Environment profile (see mapping below)            | `dev`                        |
 | `OPERATOR_ORGANIZATION_IDENTIFIER` | Your organization's DID from LEARCredentialMachine | `did:key:zDnaei...`          |
 | `API_EXTERNAL_DOMAIN`              | Public HTTPS URL for your Desmos API               | `https://desmos.example.org` |
@@ -175,7 +190,7 @@ Edit the `.env.desmos` file in the repository root to configure Desmos for your 
 Choose the correct Spring profile for your target DOME environment:
 
 | Desmos Profile (`SPRING_PROFILES_ACTIVE`) | DOME Environment(GitOps) | Description                                 |
-| :---------------------------------------: | :----------------------: | ------------------------------------------- |
+|:-----------------------------------------:|:------------------------:|---------------------------------------------|
 |                   `dev`                   |    **sbx** (Sandbox)     | Development/integration testing environment |
 |                  `test`                   |  **dev** (Development)   | QA environment                              |
 |                  `prod`                   |   **prd** (Production)   | Production environment                      |
@@ -187,10 +202,8 @@ Choose the correct Spring profile for your target DOME environment:
 ```properties
 # Spring profile for sandbox environment
 SPRING_PROFILES_ACTIVE=dev
-
 # Organization DID from LEARCredentialMachine
 OPERATOR_ORGANIZATION_IDENTIFIER=did:key:zDnaeiLh8uXoVh7Zz5e2s9v1a2b3c
-
 # Public domain (use localhost for local testing)
 API_EXTERNAL_DOMAIN=https://desmos-sandbox.example.org
 ```
@@ -200,15 +213,14 @@ API_EXTERNAL_DOMAIN=https://desmos-sandbox.example.org
 ```properties
 # Spring profile for production environment
 SPRING_PROFILES_ACTIVE=prod
-
 # Organization DID from LEARCredentialMachine
 OPERATOR_ORGANIZATION_IDENTIFIER=did:key:zDnaeiLh8uXoVh7Zz5e2s9v1a2b3c
-
 # Public domain with valid TLS certificates
 API_EXTERNAL_DOMAIN=https://desmos.example.org
 ```
 
-> **Database and broker configurations** are pre-configured in `.env.desmos` for the Docker Compose environment. Review these settings if you need custom configurations.
+> **Database and broker configurations** are pre-configured in `.env.desmos` for the Docker Compose environment. Review
+> these settings if you need custom configurations.
 
 ---
 
@@ -219,7 +231,7 @@ Add secrets to provide sensitive credentials.
 #### Required Secret Variables
 
 | Variable                                     | Description                           | Source                    |
-| -------------------------------------------- | ------------------------------------- | ------------------------- |
+|----------------------------------------------|---------------------------------------|---------------------------|
 | `SECURITY_PRIVATE_KEY`                       | Private key for cryptographic signing | Generated in Step 2       |
 | `SECURITY_LEAR_CREDENTIAL_MACHINE_IN_BASE64` | Base64-encoded LEARCredentialMachine  | From your wallet (Step 1) |
 
@@ -306,10 +318,10 @@ docker compose ps desmos
 > [!TIP]
 > **Successful startup logs should include:**
 >
-> - ✅ Started DesmosApplication in X.XXX seconds  
-> - ✅ Netty started on port 8080  
-> - ✅ Database migration completed successfully  
-> - ✅ Connected to Context Broker (Scorpio)  
+> - ✅ Started DesmosApplication in X.XXX seconds
+> - ✅ Netty started on port 8080
+> - ✅ Database migration completed successfully
+> - ✅ Connected to Context Broker (Scorpio)
 > - ✅ Connected to DLT Adapter
 
 ### 4. Test via Caddy Proxy
@@ -415,7 +427,8 @@ curl http://localhost/desmos/health
 ## Related Documentation
 
 - **[Main README](README.md)** — Access Node Docker Compose architecture and service catalog
-- **[DOME Trust Framework](https://github.com/DOME-Marketplace/trust-framework)** — Registration and trust model documentation
+- **[DOME Trust Framework](https://github.com/DOME-Marketplace/trust-framework)** — Registration and trust model
+  documentation
 - **[Scorpio Context Broker](https://scorpio.readthedocs.io/)** — NGSI-LD entity management
 - **[compose.yaml](compose.yaml)** — Full service definitions and configuration
 - **[Caddyfile](Caddyfile)** — Reverse proxy routing configuration
