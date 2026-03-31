@@ -445,7 +445,7 @@ services:
     # Service: DESMOS
     # Purpose: Manages replication of data across nodes in the DOME ecosystem.
     # Internal Ports: 8080 (API)
-    image: in2workspace/in2-desmos-api:v2.0.3
+    image: in2workspace/in2-desmos-api:v2.0.8
     container_name: desmos
     restart: always
     depends_on:
