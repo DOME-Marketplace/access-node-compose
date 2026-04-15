@@ -17,7 +17,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -40,7 +40,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -64,7 +64,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -90,7 +90,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -114,7 +114,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -138,7 +138,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -162,7 +162,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -186,7 +186,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -210,7 +210,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -234,7 +234,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -258,7 +258,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -282,7 +282,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -306,7 +306,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -330,7 +330,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -354,7 +354,7 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions="
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -377,8 +377,8 @@ services:
       - "dome.owner=Libelium"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn="
-      - "dome.versions="
+      - "dome.dependsOn=component:scorpio"
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -395,13 +395,13 @@ services:
     container_name: TMF667_document-management
     restart: always
     labels:
-      - "dome.name=usage-management"
-      - "dome.description=Manages service usage"
+      - "dome.name=document-management"
+      - "dome.description=Manages documents and file attachments"
       - "dome.owner=Libelium"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn="
-      - "dome.versions="
+      - "dome.dependsOn=component:scorpio,component:minio"
+      - "dome.versions=scorpio:>=4,<6"
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
@@ -432,6 +432,14 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+    labels:
+      - "dome.name=minio"
+      - "dome.description=S3-compatible object storage for document attachments"
+      - "dome.owner=MinIO"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.dependsOn="
+      - "dome.versions="
     networks:
       - access-node
 
