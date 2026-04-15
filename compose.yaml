@@ -21,6 +21,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -44,6 +46,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -68,6 +72,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -94,6 +100,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -118,6 +126,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -142,6 +152,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -166,6 +178,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -190,6 +204,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -214,6 +230,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -238,6 +256,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -262,6 +282,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -286,6 +308,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -310,6 +334,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -334,6 +360,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -358,6 +386,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -382,6 +412,8 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -405,6 +437,9 @@ services:
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - scorpio
+      - minio
     env_file:
       - .env.tmforum-common
     environment:
@@ -438,8 +473,7 @@ services:
       - "dome.owner=MinIO"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn="
-      - "dome.versions="
+      - "dome.versions=any"
     networks:
       - access-node
 
