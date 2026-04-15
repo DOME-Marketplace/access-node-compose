@@ -248,7 +248,7 @@ SECURITY_PRIVATE_KEY=0xabc123def456789...
 
 ```bash
 # Encode your LEARCredentialMachine to base64
-$ cat lear-credential.json | base64 -w 0
+$ cat lear-credential.txt | base64 -w 0
 ```
 
 ```properties
