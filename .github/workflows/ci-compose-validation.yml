@@ -12,6 +12,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Create .env files from examples
+        run: |
+          for f in $(find . -name "*.example" -not -path "./.git/*"); do
+            cp "$f" "${f%.example}"
+          done
+      
       - name: Validate Docker Compose file
         run: docker compose -f compose.yaml config
       - name: Check required metadata labels
