@@ -68,16 +68,29 @@ All architectural metadata must be prefixed with `dome.`, acting as our namespac
 
 To correctly configure the stack, you need to edit the following configuration files.
 
-Please take a look at the provided samples and customize them for your own environment.
+Please take a look at the provided examples and customize them for your own environment.
 
 Inside every file, you will details for the parameters that you should customize for your environment.
 
-- _**.env.desmos**_
-- _**.env.dlt-adapter**_
-- _**.secrets.desmos**_
-- _**Caddyfile**_
+- _**.env.desmos.example**_
+- _**.env.dlt-adapter.example**_
+- _**.secrets.desmos.example**_
+- _**Caddyfile.example**_
 
-Other env files should not be changed
+Other files should not be changed
+
+Please make a copy of the provided .example files before to customize them
+
+| source file | destination file |
+|-------------|------------------|
+| .env.desmos.example | .env.desmos |
+| .env.dlt-adapter-alastria.example | .env.dlt-adapter-alastria|
+| .secrets.desmos.example | .secrets.desmos |
+| .Caddyfile.example | .Caddyfile |
+
+Once you have the working files, you can customize them.
+
+You can also execure the script "setup.sh" to copy the working files from examples.
 
 
 ## Execution
