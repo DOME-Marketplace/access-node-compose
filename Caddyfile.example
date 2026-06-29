@@ -3,6 +3,12 @@
 }
 
 # Access Node API Gateway
+
+# Replace with full domain name to enable https and TLS certificates, without specifying the protocol
+# Do NOT use the protocol, just the domain name
+# example: desmos.example.org
+
+# use ":80" only for testing (http, without certificates)
 :80 {
     # TMForum APIs
     handle_path /tmf-api/accountManagement* {
@@ -61,6 +67,19 @@
     handle_path /desmos* {
         reverse_proxy desmos:8080
     }
+
+    # DOZZLE
+    # Please uncomment this directive to enable proxy for dozzle
+    # If you disable it, Dozzle will only be reachable from the local dozzle port (usually only from your private network)
+    # Ex. https://dome.mydomain.com:8888
+    #
+    # If you enable proxy, Dozzle will be available to everyone in the /dozzle folder
+    # ex: https://dome.mydomain.com/dozzle
+    
+    handle /dozzle* {
+        reverse_proxy dozzle:8080
+    }
+
 
     # Fallback
     handle {

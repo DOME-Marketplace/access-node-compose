@@ -22,3 +22,10 @@ assets/*
 # Ignore everything in postgres-init except SQL files
 postgres-init/*
 !postgres-init/*.sql
+
+
+#Ignore customized .env files
+.env.desmos
+.env.dlt-adapter-alastria
+.secrets.desmos
+Caddyfile.example

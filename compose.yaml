@@ -7,7 +7,7 @@ services:
     # Service: TMF666 - Account Management
     # Purpose: Manages user accounts and profiles.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-account:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-account:sbx_1.5.4
     container_name: TMF666_account
     restart: always
     labels:
@@ -17,12 +17,10 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -32,7 +30,7 @@ services:
     # Service: TMF651 - Agreement Management
     # Purpose: Manages commercial and technical agreements.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-agreement:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-agreement:sbx_1.5.4
     container_name: TMF651_agreement
     restart: always
     labels:
@@ -42,23 +40,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   customer-bill-management:
     # Service: TMF678 - Customer Bill Management
     # Purpose: Handles invoicing and billing information.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-customer-bill-management:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-customer-bill-management:sbx_1.5.4
     container_name: TMF678_customer-bill-management
     restart: always
     labels:
@@ -68,23 +63,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   customer-management:
     # Service: TMF629 - Customer Management
     # Purpose: Manages customer information and lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-customer-management:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-customer-management:sbx_1.5.4
     # Service: TMF629 - Customer Management
     # Service: TMF629 - Customer Management
     container_name: TMF629_customer-management
@@ -96,23 +88,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   party-catalog:
     # Service: TMF632 - Party Management
     # Purpose: Repository for parties (organizations/individuals).
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-party-catalog:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-party-catalog:sbx_1.5.4
     container_name: TMF632_party-catalog
     restart: always
     labels:
@@ -122,23 +111,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   party-role:
     # Service: TMF669 - Party Role Management
     # Purpose: Manages the roles played by parties.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-party-role:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-party-role:sbx_1.5.4
     container_name: TMF669_party-role
     restart: always
     labels:
@@ -148,23 +134,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   product-catalog:
     # Service: TMF620 - Product Catalog Management
     # Purpose: Repository for products and services.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-catalog:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-product-catalog:sbx_1.5.4
     container_name: TMF620_product-catalog
     restart: always
     labels:
@@ -174,23 +157,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   product-inventory:
     # Service: TMF637 - Product Inventory Management
     # Purpose: Manages the inventory of products.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-inventory:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-product-inventory:sbx_1.5.4
     container_name: TMF637_product-inventory
     restart: always
     labels:
@@ -200,23 +180,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   product-ordering-management:
     # Service: TMF622 - Product Ordering Management
     # Purpose: Manages product orders.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-ordering-management:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-product-ordering-management:sbx_1.5.4
     container_name: TMF622_product-ordering-management
     restart: always
     labels:
@@ -226,23 +203,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   quote:
     # Service: TMF648 - Quote Management
     # Purpose: Manages product quotes.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-quote:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-quote:sbx_1.5.4
     container_name: TMF648_quote
     restart: always
     labels:
@@ -252,23 +226,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   resource-catalog:
     # Service: TMF634 - Resource Catalog Management
     # Purpose: Repository for resources.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-catalog:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-resource-catalog:sbx_1.5.4
     container_name: TMF634_resource-catalog
     restart: always
     labels:
@@ -278,23 +249,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   resource-function-activation:
     # Service: TMF664 - Resource Function Activation Management
     # Purpose: Manages resource function lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-function-activation:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-resource-function-activation:sbx_1.5.4
     container_name: TMF664_resource-function-activation
     restart: always
     labels:
@@ -304,23 +272,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   resource-inventory:
     # Service: TMF639 - Resource Inventory Management
     # Purpose: Manages resource inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-inventory:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-resource-inventory:sbx_1.5.4
     container_name: TMF639_resource-inventory
     restart: always
     labels:
@@ -330,23 +295,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   service-catalog:
     # Service: TMF633 - Service Catalog Management
     # Purpose: Repository for service definitions.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-service-catalog:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-service-catalog:sbx_1.5.4
     container_name: TMF633_service-catalog
     restart: always
     labels:
@@ -356,23 +318,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   service-inventory:
     # Service: TMF638 - Service Inventory Management
     # Purpose: Manages service inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-service-inventory:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-service-inventory:sbx_1.5.4
     container_name: TMF638_service-inventory
     restart: always
     labels:
@@ -382,23 +341,20 @@ services:
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
       - access-node
 
-
   usage-management:
     # Service: TMF635 - Usage Management
     # Purpose: Manages service usage records.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-usage-management:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-usage-management:sbx_1.5.4
     container_name: TMF635_usage-management
     restart: always
     labels:
@@ -407,13 +363,11 @@ services:
       - "dome.owner=Libelium"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn=component:scorpio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.dependsOn="
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
     env_file:
       - .env.tmforum-common
     networks:
@@ -423,23 +377,20 @@ services:
     # Service: TMF667 - Usage Management
     # Purpose: Manages service usage records.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-document-management:sbx_1.5.6
+    image: docker.io/drllbl18/tmforum-document-management:sbx_1.5.4
     container_name: TMF667_document-management
     restart: always
     labels:
-      - "dome.name=document-management"
-      - "dome.description=Manages documents and file attachments"
+      - "dome.name=usage-management"
+      - "dome.description=Manages service usage"
       - "dome.owner=Libelium"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn=component:scorpio,component:minio"
-      - "dome.versions=scorpio:>=4,<6"
+      - "dome.dependsOn="
+      - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
-    depends_on:
-      - scorpio
-      - minio
     env_file:
       - .env.tmforum-common
     environment:
@@ -449,8 +400,10 @@ services:
         S3_BUCKET: "document-attachments"
     networks:
       - access-node
-    
+
   minio:
+    # Service: MINIO S3 STORAGE
+    # Purpose: This service provides S3-compatible object storage for the Access Node.
     image: minio/minio:latest
     command: server /data --console-address :9001
     ports:
@@ -467,13 +420,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
-    labels:
-      - "dome.name=minio"
-      - "dome.description=S3-compatible object storage for document attachments"
-      - "dome.owner=MinIO"
-      - "dome.type=service"
-      - "dome.lifecycle=sandbox"
-      - "dome.versions=any"
     networks:
       - access-node
 
@@ -535,6 +481,7 @@ services:
       DLT_ADAPTER_EXTERNAL_DOMAIN: http://dlt-adapter-alastria:8080
     env_file:
       - .env.desmos
+      - .secrets.desmos
     networks:
       - access-node
     healthcheck:
@@ -543,6 +490,7 @@ services:
       timeout: 5s
       retries: 6
       start_period: 40s
+
 
   dlt-adapter-alastria:
     # Service: DLT Adapter Alastria
@@ -565,6 +513,7 @@ services:
       - .env.dlt-adapter-alastria
     networks:
       - access-node
+
 
   scorpio:
     # Service: Scorpio Broker
@@ -622,8 +571,8 @@ services:
     container_name: caddy
     restart: always
     ports:
-      - "80:80"
-      # - "443:443"
+      #- "80:80"
+      - "443:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
@@ -638,6 +587,31 @@ services:
       - "dome.versions=any"
     networks:
       - access-node
+
+  dozzle:
+    # Service: Dozzle - Realtime log viewer for Docker containers
+    # Purpose: Provides a web interface to view logs of all running containers in real-time.
+    # Internal Ports: 8080 (Web UI)
+    # Redirected to https://<host>/dozzle via Caddy reverse proxy.
+    # Note: Dozzle is disabled by default and can be enabled via Docker Compose profiles, or by running the stack with `docker compose --profile debug up -d`.
+    #       If you want to enable Dozzle by default, remove or comment the `profiles` directive below, or run the stack with `docker compose --profile debug up -d`.
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    environment:
+      - DOZZLE_BASE=/dozzle
+    ports:
+      - "8888:8080"
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - access-node
+    # Comment the profile directive to have dozzle always enabled.
+    # if profile is active (dozzle disabled by default), you can still manually enable dozzle with the command: docker compose --profile debug up -d
+    profiles:
+      - debug
+
+
 
 networks:
   access-node:
