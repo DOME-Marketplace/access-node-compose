@@ -414,6 +414,14 @@ services:
       MINIO_ROOT_PASSWORD: minioadmin
     volumes:
       - minio-data:/data
+    labels:
+      - "dome.name=minio"
+      - "dome.description=S3-compatible object storage for the Access Node"
+      - "dome.owner=Altia"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.versions=any"
+    
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
       interval: 10s
@@ -606,6 +614,13 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - access-node
+    labels:
+      - "dome.name=dozzle"
+      - "dome.description=Realtime log viewer for Docker containers"
+      - "dome.owner=Altia"
+      - "dome.type=service"
+      - "dome.lifecycle=sandbox"
+      - "dome.versions=any"
     # Comment the profile directive to have dozzle always enabled.
     # if profile is active (dozzle disabled by default), you can still manually enable dozzle with the command: docker compose --profile debug up -d
     profiles:
