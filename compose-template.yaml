@@ -7,7 +7,7 @@ services:
     # Service: TMF666 - Account Management
     # Purpose: Manages user accounts and profiles.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-account:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF666_account
     restart: always
     labels:
@@ -30,7 +30,7 @@ services:
     # Service: TMF651 - Agreement Management
     # Purpose: Manages commercial and technical agreements.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-agreement:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF651_agreement
     restart: always
     labels:
@@ -53,7 +53,7 @@ services:
     # Service: TMF678 - Customer Bill Management
     # Purpose: Handles invoicing and billing information.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-customer-bill-management:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF678_customer-bill-management
     restart: always
     labels:
@@ -76,7 +76,7 @@ services:
     # Service: TMF629 - Customer Management
     # Purpose: Manages customer information and lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-customer-management:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     # Service: TMF629 - Customer Management
     # Service: TMF629 - Customer Management
     container_name: TMF629_customer-management
@@ -101,7 +101,7 @@ services:
     # Service: TMF632 - Party Management
     # Purpose: Repository for parties (organizations/individuals).
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-party-catalog:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF632_party-catalog
     restart: always
     labels:
@@ -124,7 +124,7 @@ services:
     # Service: TMF669 - Party Role Management
     # Purpose: Manages the roles played by parties.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-party-role:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF669_party-role
     restart: always
     labels:
@@ -147,7 +147,7 @@ services:
     # Service: TMF620 - Product Catalog Management
     # Purpose: Repository for products and services.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-catalog:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF620_product-catalog
     restart: always
     labels:
@@ -170,7 +170,7 @@ services:
     # Service: TMF637 - Product Inventory Management
     # Purpose: Manages the inventory of products.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-inventory:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF637_product-inventory
     restart: always
     labels:
@@ -193,7 +193,7 @@ services:
     # Service: TMF622 - Product Ordering Management
     # Purpose: Manages product orders.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-product-ordering-management:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF622_product-ordering-management
     restart: always
     labels:
@@ -216,7 +216,7 @@ services:
     # Service: TMF648 - Quote Management
     # Purpose: Manages product quotes.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-quote:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF648_quote
     restart: always
     labels:
@@ -239,7 +239,7 @@ services:
     # Service: TMF634 - Resource Catalog Management
     # Purpose: Repository for resources.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-catalog:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF634_resource-catalog
     restart: always
     labels:
@@ -262,7 +262,7 @@ services:
     # Service: TMF664 - Resource Function Activation Management
     # Purpose: Manages resource function lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-function-activation:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF664_resource-function-activation
     restart: always
     labels:
@@ -285,7 +285,7 @@ services:
     # Service: TMF639 - Resource Inventory Management
     # Purpose: Manages resource inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-resource-inventory:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF639_resource-inventory
     restart: always
     labels:
@@ -308,7 +308,7 @@ services:
     # Service: TMF633 - Service Catalog Management
     # Purpose: Repository for service definitions.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-service-catalog:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF633_service-catalog
     restart: always
     labels:
@@ -331,7 +331,7 @@ services:
     # Service: TMF638 - Service Inventory Management
     # Purpose: Manages service inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-service-inventory:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF638_service-inventory
     restart: always
     labels:
@@ -354,7 +354,7 @@ services:
     # Service: TMF635 - Usage Management
     # Purpose: Manages service usage records.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-usage-management:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF635_usage-management
     restart: always
     labels:
@@ -377,7 +377,7 @@ services:
     # Service: TMF667 - Usage Management
     # Purpose: Manages service usage records.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
-    image: docker.io/drllbl18/tmforum-document-management:sbx_1.5.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF667_document-management
     restart: always
     labels:
@@ -404,7 +404,8 @@ services:
   minio:
     # Service: MINIO S3 STORAGE
     # Purpose: This service provides S3-compatible object storage for the Access Node.
-    image: minio/minio:latest
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
+    container_name: minio
     command: server /data --console-address :9001
     ports:
       - "9000:9000"   # S3 API
@@ -441,7 +442,7 @@ services:
     # Service: DESMOS
     # Purpose: Manages replication of data across nodes in the DOME ecosystem.
     # Internal Ports: 8080 (API)
-    image: in2workspace/in2-desmos-api:v2.0.11
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: desmos
     restart: always
     depends_on:
@@ -504,7 +505,7 @@ services:
     # Service: DLT Adapter Alastria
     # Purpose: Interface for Alastria DLT.
     # Internal Ports: 8080 (API)
-    image: quay.io/digitelts/dlt-adapter:1.5.1
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: dlt-adapter-alastria
     restart: always
     labels:
@@ -527,7 +528,7 @@ services:
     # Service: Scorpio Broker
     # Purpose: Context Broker for NGSI-LD data.
     # Internal Ports: 9090
-    image: scorpiobroker/all-in-one-runner:java-4.1.10
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: scorpio
     restart: always
     depends_on:
@@ -549,7 +550,7 @@ services:
 
   postgres:
     # Service: PostgreSQL Database
-    image: postgis/postgis:15-3.4
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: postgres
     restart: always
     labels:
@@ -575,7 +576,7 @@ services:
     # Service: Caddy API Gateway
     # Purpose: Single entry point for all external traffic entering Access Node.
     # Ports: 80 (HTTP exposed), 443 (HTTPS)
-    image: caddy:2-alpine
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: caddy
     restart: always
     ports:
@@ -604,7 +605,7 @@ services:
     # Note: Dozzle is disabled by default and can be enabled via Docker Compose profiles, or by running the stack with `docker compose --profile debug up -d`.
     #       If you want to enable Dozzle by default, remove or comment the `profiles` directive below, or run the stack with `docker compose --profile debug up -d`.
     container_name: dozzle
-    image: amir20/dozzle:latest
+    image: __CONTAINER_IMAGE_PLACEHOLDER__
     environment:
       - DOZZLE_BASE=/dozzle
     ports:

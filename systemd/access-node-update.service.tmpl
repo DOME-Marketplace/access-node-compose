@@ -1,0 +1,9 @@
+[Unit]
+Description=Dome Access Node Compose - check for updates and restart stack if needed
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=__WORKDIR__
+ExecStart=__WORKDIR__/update.sh

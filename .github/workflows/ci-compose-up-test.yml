@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Generate runtime compose file
+        run: ./wizard.py generate
       - name: Start services
         run: docker compose -f compose.yaml up -d
       - name: Wait for containers to be healthy

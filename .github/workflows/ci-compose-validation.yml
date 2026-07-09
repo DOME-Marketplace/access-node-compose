@@ -14,11 +14,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create .env files from examples
-        run: |
-          for f in $(find . -name "*.example" -not -path "./.git/*"); do
-            cp "$f" "${f%.example}"
-          done
-      
+        run: ./wizard.py init
+
+      - name: Generate runtime compose file
+        run: ./wizard.py generate
       - name: Validate Docker Compose file
         run: docker compose -f compose.yaml config
       - name: Check required metadata labels
