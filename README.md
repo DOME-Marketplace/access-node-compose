@@ -64,6 +64,57 @@ All architectural metadata must be prefixed with `dome.`, acting as our namespac
 4. **CI Validation:** Our (WIP) CI pipeline runs a checker. If a service is missing the `dome.owner` or `dome.type` labels, the build will fail.
 
 
+## Prerequisites
+
+Before running the installation wizard, make sure the target machine has:
+
+- **Docker Engine** and the **Docker Compose plugin** (`docker compose`, not the standalone `docker-compose`) — [install instructions](https://docs.docker.com/engine/install/).
+- **Python 3.8+** — used to run `wizard.py` (standard library only, no extra packages to install).
+- **git** — needed by `update.sh` to pull the latest `versions-<environment>.env` for periodic auto-updates; not required for a one-off manual install.
+- **systemd** (optional) — only needed if you want the wizard to install the auto-update timer for you (step 4); without it you can still set up your own scheduling, or update manually.
+
+`wizard.py` checks Docker and the Compose plugin automatically at startup (and on demand via step `1` of the menu) and stops with instructions if either is missing.
+
+## Installation
+
+The recommended way to install and configure the Access Node is the guided wizard:
+
+<pre> ./wizard.py</pre>
+
+It walks you through the following numbered steps, re-entrant at every run (safe to stop and relaunch at any point). Each step has both a number and a symbolic name — use whichever you prefer for direct/manual execution (e.g. `./wizard.py 5` and `./wizard.py start` are equivalent):
+
+| Step | Name | Description |
+| --- | --- | --- |
+| `1` | `preflight` | Checks Docker and the Compose plugin are installed; runs automatically at every startup, but can also be re-run on demand (e.g. after fixing something). |
+| `2` | `init` | Creates your working config files from the `.example` templates and tells you which ones to customize. |
+| `3` | `generate-compose` | Pulls the latest known-good image versions for your `DOME_ENVIRONMENT` (set in `.env.runtime`: `sbx`, `dev`, `dev2`, or `prod`) and generates `compose.yaml` from `compose-template.yaml`. |
+| `4` | `config-auto-update` | Offers to install and enable a systemd timer that periodically checks for new versions and restarts the stack (optional); if it can't install it automatically (no systemd, no sudo), it prints the manual steps. |
+| `5` | `start` | Runs `docker compose pull` and `docker compose up -d`. |
+
+The menu also lists a couple of lettered, non-sequential commands you can run at any point (they don't gate anything and are never auto-suggested as "the next step"):
+
+| Command | Name | Description |
+| --- | --- | --- |
+| `a` | `status` | A friendlier, condensed alternative to `docker compose ps`: one line per service with its up/down state and health. |
+| `b` | `backup` | Creates a timestamped `.tgz` backup of your current configuration files, on demand. |
+
+Run `./wizard.py` again at any time to resume where you left off, or jump directly to a step/command with `./wizard.py <number-letter-or-name>` (e.g. `./wizard.py 3` or `./wizard.py generate-compose`). Run `./wizard.py -h` for the full list.
+
+Step `3` (and `update.sh`'s automatic restarts) pull `versions-<environment>.env` from git. By default they use whichever branch is currently checked out on the machine; set `VERSIONS_BRANCH` in `.env.runtime` to pin a specific one (normally `main`). A yellow warning is printed whenever the branch in use isn't `main`, since that's not the intended production source.
+
+`wizard.py` is the only script meant to be run by hand. The only other one you'll see in the repo, `update.sh`, isn't for manual use either — it's what the systemd timer set up in step `4` calls periodically to check for new versions and restart the stack.
+
+### Logging
+
+Set `LOGGING=true` and (optionally) `LOG_FILE` in `.env.runtime` (default: `./access-node-compose.log`) to keep a timestamped record of every step or command actually run — one line each, not the full command output:
+
+```
+[2026.07.07 12.42.30] step 3) Pull updated versions and generate compose.yaml
+[2026.07.07 12.42.30] update.sh) regenerated compose.yaml for 'sbx' (dry run)
+```
+
+This applies both to manual wizard use and to `update.sh`'s automatic restarts via the systemd timer, so you get a single history of what ran and when. `update.sh` only adds a line when it actually finds and applies a new version — the periodic ticks where nothing changed stay silent, so the log doesn't fill up with no-ops.
+
 ## Configuration
 
 To correctly configure the stack, you need to edit the following configuration files.
@@ -90,22 +141,37 @@ Please make a copy of the provided .example files before to customize them
 
 Once you have the working files, you can customize them.
 
-You can also execure the script "setup.sh" to copy the working files from examples.
+Run `./wizard.py` to copy the working files from the examples for you (its first step) — see Installation above.
+
+`compose.yaml` itself is generated, not edited by hand: it never contains hardcoded image versions, only variables filled in from `versions-<environment>.env` (`./wizard.py generate`, called by `wizard.py` step 3 and by `update.sh` for the periodic auto-update).
 
 
 ## Execution
-You can execute the Access Node using the following command
+
+The preferred way to start, restart, and check the Access Node is through the wizard (see Installation above):
+
+<pre> ./wizard.py 5</pre>
+
+This runs `docker compose pull` and `docker compose up -d` for you, automatically honoring any `COMPOSE_PROFILES` set in `.env.runtime` (see Dozzle below). To check the status of the running services afterwards:
+
+<pre> ./wizard.py a</pre>
+
+To stop the stack, use this command:
+
+<pre> docker compose down</pre>
+
+### Manual execution
+
+If you prefer not to use the wizard, once `compose.yaml` has been generated (see Installation above) you can start the stack directly with:
 
 <pre> docker compose up -d</pre>
 
-To stop the stack, use this command
-
-<pre> docker compose down</pre>
+Keep in mind that running `docker compose` directly does not pick up `COMPOSE_PROFILES` from `.env.runtime` — export it yourself first if needed (e.g. `export $(grep -v '^#' .env.runtime | xargs)`), or pass `--profile <name>` explicitly. This also means manual runs stay out of sync with what `update.sh`'s automatic restarts will do, since those always read `.env.runtime`.
 
 ### Dozzle
 During setup/debug it is possible to start an instance of **Dozzle**, a service that provide a simple web UI to view container logs for all services, without having to view them from console.
 
-Dozzle will NOT be started automatically with docker compose unless you run the stack using this command 
+Dozzle will NOT be started automatically unless enabled. The recommended way is to uncomment `COMPOSE_PROFILES=debug` in your `.env.runtime` (see `.env.runtime.example`): this applies consistently both to `./wizard.py` (steps 5/a) and to `update.sh`'s automatic restarts via the systemd timer, so Dozzle doesn't silently disappear on the next auto-update. For a one-off manual start without touching `.env.runtime`, you can still run
 
 <pre> docker compose up -d --profile debug</pre>
 
