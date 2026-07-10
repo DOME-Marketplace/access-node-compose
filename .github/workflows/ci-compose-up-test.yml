@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Create .env files from examples
+        run: ./wizard.py init
       - name: Generate runtime compose file
         run: ./wizard.py generate
       - name: Start services
