@@ -19,7 +19,7 @@ When adding or updating your service, please follow this template:
 ```yaml
 services:
   desmos:
-    image: in2workspace/in2-desmos-api:v2.0.11
+    image: in2workspace/in2-desmos-api:v2.0.21
     # ... standard docker configs (ports, volumes, etc) ...
     labels:
       # Description
