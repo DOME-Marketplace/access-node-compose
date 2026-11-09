@@ -156,11 +156,17 @@ curl -L https://github.com/DOME-Marketplace/access-node-compose/archive/refs/tag
 
 The timer applies the new release at its next run, within 15 minutes; to apply it right away, run `./wizard.py 3` and then `./wizard.py 5`. Configuration files introduced by the new release are created with default values and named in a warning: review them, and compare `.env.runtime` with `.env.runtime.example`.
 
-**From releases whose timer ran as root** (the timer unit has no `User=` line: check with `systemctl cat access-node-update.service`): run `./wizard.py 4` again to reinstall it with your user, and give back to your user the files root created: `sudo chown -R "$USER" /opt/access-node`.
+### Upgrading an installation older than 0.1.0
 
-**From releases that read versions from git** (`versions-<environment>.env` files in the package): add `VERSIONS_API_URL` to `.env.runtime`. Until then, updates stop with an error and the running stack is left untouched.
+Installations made before release 0.1.0 (cloned from git, with `versions-<environment>.env` files in the repository) need a few manual steps after extracting the package, in this order:
 
-**From releases that used MinIO** for attachments: MinIO images are no longer available, so it was replaced by SeaweedFS (credentials in the new `.env.s3`). Attachments stored in MinIO are not migrated. Once you don't need them, remove the old volume with `docker volume rm <project>_minio-data` (`docker volume ls` shows the exact name).
+1. **Stop the auto-update timer**, if installed: `sudo systemctl stop access-node-update.timer`.
+2. **Give back to your user the files the timer created as root** (it used to run as root): `sudo chown -R "$USER" /opt/access-node`.
+3. **Add `VERSIONS_API_URL`** to `.env.runtime` (the URLs are listed in `.env.runtime.example`). Without it, updates stop with an error and the running stack is left untouched.
+4. **Update the `Caddyfile`**: the TM Forum services were renamed with a `tm-forum-api-` prefix (e.g. `account` became `tm-forum-api-account`), so every `reverse_proxy` line must use the new names, as in `Caddyfile.example`. Otherwise the TM Forum APIs are unreachable from outside.
+5. **Run `./wizard.py 3`**, then **edit `.env.s3`**, which it creates with default values: MinIO images are no longer available, so attachments are now stored in SeaweedFS. Attachments stored in MinIO are not migrated; once you don't need them, remove the old volume with `docker volume rm <project>_minio-data` (`docker volume ls` shows the exact name).
+6. **Run `./wizard.py 5`**. The first start runs the database migrations of the new Scorpio version and can take a few minutes: back up the database first if you need to be able to go back.
+7. **Reinstall the timer** with `./wizard.py 4`: it now runs as your user.
 
 ## Troubleshooting
 

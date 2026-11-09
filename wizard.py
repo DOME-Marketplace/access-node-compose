@@ -795,7 +795,9 @@ def step_d_run():
 
     env = compose_env()
     run(["docker", "compose", "-f", "compose.yaml", "pull"], env=env)
-    run(["docker", "compose", "-f", "compose.yaml", "up", "-d"], env=env)
+    # --remove-orphans: containers of services renamed or removed by a new release
+    # would otherwise keep their fixed container_name and block the new ones.
+    run(["docker", "compose", "-f", "compose.yaml", "up", "-d", "--remove-orphans"], env=env)
     run(["docker", "compose", "-f", "compose.yaml", "ps"], env=env)
 
 
