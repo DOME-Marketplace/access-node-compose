@@ -15,6 +15,8 @@ jobs:
 
       - name: Create .env files from examples
         run: ./wizard.py init
+      - name: Use the CI image versions (no versions API access needed)
+        run: cp .github/ci/versions-ci.env versions-sbx.env
 
       - name: Generate runtime compose file
         run: ./wizard.py generate
@@ -24,3 +26,20 @@ jobs:
         run: |
           python3 .github/scripts/check_labels.py compose.yaml
         continue-on-error: false
+      - name: Test update.sh and wizard.py against a mocked versions API
+        run: python3 .github/scripts/test_update.py
+
+  # Non-blocking: the real API may be down without anything being wrong in this repo.
+  # Warns early if the sbx versions API stops matching compose-template.yaml.
+  versions-api-smoke-test:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Fetch versions from the sbx versions API and generate compose.yaml
+        run: |
+          cp .env.runtime.example .env.runtime
+          sed -i 's|^VERSIONS_API_URL=.*|VERSIONS_API_URL=https://tmf-test.dome-marketplace-sbx.org/access-node-compose-api/v1|' .env.runtime
+          ./wizard.py fetch-versions
+          ./wizard.py generate
