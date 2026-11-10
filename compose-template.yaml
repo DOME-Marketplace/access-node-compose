@@ -1,17 +1,28 @@
+# Shared healthcheck of the TMForum API services: Micronaut management endpoint.
+# Long start period: on a full stack restart they wait for Scorpio and may take
+# a few minutes to open the port (a service turns healthy as soon as it answers).
+x-tmf-healthcheck: &tmf-healthcheck
+  test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:9090/health"]
+  interval: 30s
+  timeout: 5s
+  retries: 3
+  start_period: 300s
+
 services:
 
   # --- TMForum APIs ---
   # These services provide the standard TMForum Open APIs for DOME.
 
-  account:
+  tm-forum-api-account:
     # Service: TMF666 - Account Management
     # Purpose: Manages user accounts and profiles.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF666_account
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=account"
+      - "dome.name=tm-forum-api-account"
       - "dome.description=Manages user accounts and profiles"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -26,15 +37,16 @@ services:
     networks:
       - access-node
 
-  agreement:
+  tm-forum-api-agreement:
     # Service: TMF651 - Agreement Management
     # Purpose: Manages commercial and technical agreements.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF651_agreement
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=agreement"
+      - "dome.name=tm-forum-api-agreement"
       - "dome.description=Manages agreements"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -49,15 +61,16 @@ services:
     networks:
       - access-node
 
-  customer-bill-management:
+  tm-forum-api-customer-bill-management:
     # Service: TMF678 - Customer Bill Management
     # Purpose: Handles invoicing and billing information.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF678_customer-bill-management
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=customer-bill-management"
+      - "dome.name=tm-forum-api-customer-bill-management"
       - "dome.description=Handles customer billing"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -72,17 +85,16 @@ services:
     networks:
       - access-node
 
-  customer-management:
+  tm-forum-api-customer-management:
     # Service: TMF629 - Customer Management
     # Purpose: Manages customer information and lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
-    # Service: TMF629 - Customer Management
-    # Service: TMF629 - Customer Management
     container_name: TMF629_customer-management
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=customer-management"
+      - "dome.name=tm-forum-api-customer-management"
       - "dome.description=Manages customer profiles"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -97,15 +109,16 @@ services:
     networks:
       - access-node
 
-  party-catalog:
+  tm-forum-api-party-catalog:
     # Service: TMF632 - Party Management
     # Purpose: Repository for parties (organizations/individuals).
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF632_party-catalog
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=party-catalog"
+      - "dome.name=tm-forum-api-party-catalog"
       - "dome.description=Catalog of parties"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -120,15 +133,16 @@ services:
     networks:
       - access-node
 
-  party-role:
+  tm-forum-api-party-role:
     # Service: TMF669 - Party Role Management
     # Purpose: Manages the roles played by parties.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF669_party-role
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=party-role"
+      - "dome.name=tm-forum-api-party-role"
       - "dome.description=Manages party roles"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -143,15 +157,16 @@ services:
     networks:
       - access-node
 
-  product-catalog:
+  tm-forum-api-product-catalog:
     # Service: TMF620 - Product Catalog Management
     # Purpose: Repository for products and services.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF620_product-catalog
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=product-catalog"
+      - "dome.name=tm-forum-api-product-catalog"
       - "dome.description=Catalog of products"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -166,15 +181,16 @@ services:
     networks:
       - access-node
 
-  product-inventory:
+  tm-forum-api-product-inventory:
     # Service: TMF637 - Product Inventory Management
     # Purpose: Manages the inventory of products.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF637_product-inventory
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=product-inventory"
+      - "dome.name=tm-forum-api-product-inventory"
       - "dome.description=Manages product inventory"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -189,15 +205,16 @@ services:
     networks:
       - access-node
 
-  product-ordering-management:
+  tm-forum-api-product-ordering-management:
     # Service: TMF622 - Product Ordering Management
     # Purpose: Manages product orders.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF622_product-ordering-management
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=product-ordering-management"
+      - "dome.name=tm-forum-api-product-ordering-management"
       - "dome.description=Manages product orders"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -212,15 +229,16 @@ services:
     networks:
       - access-node
 
-  quote:
+  tm-forum-api-quote:
     # Service: TMF648 - Quote Management
     # Purpose: Manages product quotes.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF648_quote
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=quote"
+      - "dome.name=tm-forum-api-quote"
       - "dome.description=Manages quotes"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -235,15 +253,16 @@ services:
     networks:
       - access-node
 
-  resource-catalog:
+  tm-forum-api-resource-catalog:
     # Service: TMF634 - Resource Catalog Management
     # Purpose: Repository for resources.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF634_resource-catalog
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=resource-catalog"
+      - "dome.name=tm-forum-api-resource-catalog"
       - "dome.description=Catalog of resources"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -258,15 +277,16 @@ services:
     networks:
       - access-node
 
-  resource-function-activation:
+  tm-forum-api-resource-function-activation:
     # Service: TMF664 - Resource Function Activation Management
     # Purpose: Manages resource function lifecycle.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF664_resource-function-activation
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=resource-function-activation"
+      - "dome.name=tm-forum-api-resource-function-activation"
       - "dome.description=Manages resource functions"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -281,15 +301,16 @@ services:
     networks:
       - access-node
 
-  resource-inventory:
+  tm-forum-api-resource-inventory:
     # Service: TMF639 - Resource Inventory Management
     # Purpose: Manages resource inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF639_resource-inventory
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=resource-inventory"
+      - "dome.name=tm-forum-api-resource-inventory"
       - "dome.description=Manages resource inventory"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -304,15 +325,16 @@ services:
     networks:
       - access-node
 
-  service-catalog:
+  tm-forum-api-service-catalog:
     # Service: TMF633 - Service Catalog Management
     # Purpose: Repository for service definitions.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF633_service-catalog
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=service-catalog"
+      - "dome.name=tm-forum-api-service-catalog"
       - "dome.description=Catalog of services"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -327,15 +349,16 @@ services:
     networks:
       - access-node
 
-  service-inventory:
+  tm-forum-api-service-inventory:
     # Service: TMF638 - Service Inventory Management
     # Purpose: Manages service inventory.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF638_service-inventory
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=service-inventory"
+      - "dome.name=tm-forum-api-service-inventory"
       - "dome.description=Manages service inventory"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -350,15 +373,16 @@ services:
     networks:
       - access-node
 
-  usage-management:
+  tm-forum-api-usage-management:
     # Service: TMF635 - Usage Management
     # Purpose: Manages service usage records.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF635_usage-management
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=usage-management"
+      - "dome.name=tm-forum-api-usage-management"
       - "dome.description=Manages service usage"
       - "dome.owner=Libelium"
       - "dome.type=service"
@@ -373,62 +397,83 @@ services:
     networks:
       - access-node
 
-  document-management:
-    # Service: TMF667 - Usage Management
-    # Purpose: Manages service usage records.
+  tm-forum-api-document-management:
+    # Service: TMF667 - Document Management
+    # Purpose: Manages document attachments.
     # Internal Ports: 8080 (API), 9090 (Admin/Metrics)
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: TMF667_document-management
     restart: always
+    healthcheck: *tmf-healthcheck
     labels:
-      - "dome.name=usage-management"
-      - "dome.description=Manages service usage"
+      - "dome.name=tm-forum-api-document-management"
+      - "dome.description=Manages document attachments"
       - "dome.owner=Libelium"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn="
+      - "dome.dependsOn=component:scorpio,component:seaweedfs"
       - "dome.versions="
     # ports:
     #   - "8080:8080"
     #   - "9090:9090"
+    depends_on:
+      - seaweedfs
     env_file:
       - .env.tmforum-common
+      # S3_ACCESS_KEY / S3_SECRET_KEY, shared with the seaweedfs service
+      - .env.s3
     environment:
-        S3_ENDPOINT: "http://minio:9000"
-        S3_ACCESS_KEY: "minioadmin"
-        S3_SECRET_KEY: "minioadmin"
+        S3_ENDPOINT: "http://seaweedfs:8333"
         S3_BUCKET: "document-attachments"
     networks:
       - access-node
 
-  minio:
-    # Service: MINIO S3 STORAGE
-    # Purpose: This service provides S3-compatible object storage for the Access Node.
-    image: __CONTAINER_IMAGE_PLACEHOLDER__
-    container_name: minio
-    command: server /data --console-address :9001
+  seaweedfs:
+    # Service: SeaweedFS S3 STORAGE
+    # Purpose: S3-compatible object storage for the Access Node (attachments of
+    #          tm-forum-api-document-management, bucket "document-attachments").
+    # Ports: 8333 (S3 API), 12535 (admin web UI), both published on 127.0.0.1 only.
+    # Credentials: .env.s3 (S3 keys for document-management, admin UI login).
+    # No Kubernetes equivalent in gitops: version pinned statically here, not provided by the versions API.
+    image: chrislusf/seaweedfs:4.53
+    container_name: seaweedfs
+    restart: always
+    # The S3 identity is written to a config file at startup from .env.s3: unlike the
+    # AWS_ACCESS_KEY_ID fallback, it can't be overridden by users created later in the
+    # admin UI. Without any credentials SeaweedFS would accept every key.
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -eu
+        for key in "$${S3_ACCESS_KEY:-}" "$${S3_SECRET_KEY:-}"; do
+          case "$$key" in
+            ""|*[!A-Za-z0-9._-]*)
+              echo "S3_ACCESS_KEY and S3_SECRET_KEY in .env.s3 must be set and use only letters, digits, '.', '_' or '-'." >&2
+              exit 1 ;;
+          esac
+        done
+        printf '{"identities":[{"name":"document-management","credentials":[{"accessKey":"%s","secretKey":"%s"}],"actions":["Admin","Read","Write","List","Tagging"]}]}\n' "$$S3_ACCESS_KEY" "$$S3_SECRET_KEY" > /tmp/s3-config.json
+        exec weed mini -dir=/data -ip=seaweedfs -ip.bind=0.0.0.0 -s3.config=/tmp/s3-config.json -bucket=document-attachments -admin.user="$${SEAWEEDFS_ADMIN_USER:-admin}" -admin.password="$${SEAWEEDFS_ADMIN_PASSWORD:-}" -webdav=false -s3.port.iceberg=0 -s3.port.lance=0 -master.telemetry=false
+    env_file:
+      - .env.s3
     ports:
-      - "9000:9000"   # S3 API
-      - "9001:9001"   # Web console
-    environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadmin
+      - "127.0.0.1:8333:8333"     # S3 API
+      - "127.0.0.1:12535:12535"   # Admin web UI
     volumes:
-      - minio-data:/data
+      - seaweedfs-data:/data
     labels:
-      - "dome.name=minio"
+      - "dome.name=seaweedfs"
       - "dome.description=S3-compatible object storage for the Access Node"
       - "dome.owner=Altia"
       - "dome.type=service"
       - "dome.lifecycle=sandbox"
       - "dome.versions=any"
-    
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:8333/healthz"]
       interval: 10s
       timeout: 5s
       retries: 3
-      start_period: 10s
+      start_period: 30s
     networks:
       - access-node
 
@@ -494,11 +539,11 @@ services:
     networks:
       - access-node
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 10s
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:8080/health"]
+      interval: 30s
       timeout: 5s
       retries: 6
-      start_period: 40s
+      start_period: 60s
 
 
   dlt-adapter-alastria:
@@ -508,6 +553,12 @@ services:
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: dlt-adapter-alastria
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
     labels:
       - "dome.name=dlt-adapter-alastria"
       - "dome.description=Interface for Alastria DLT"
@@ -530,7 +581,18 @@ services:
     # Internal Ports: 9090
     image: __CONTAINER_IMAGE_PLACEHOLDER__
     container_name: scorpio
-    restart: always
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xmx2g -XX:+ExitOnOutOfMemoryError"
+    mem_limit: 3g
+    restart: unless-stopped
+    # Readiness includes the PostgreSQL connection. Long start period: the first
+    # start after a Scorpio upgrade can spend minutes on database migrations.
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:9090/q/health/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 300s
     depends_on:
       - postgres
     labels:
@@ -550,9 +612,16 @@ services:
 
   postgres:
     # Service: PostgreSQL Database
-    image: __CONTAINER_IMAGE_PLACEHOLDER__
+    # No Kubernetes equivalent in gitops: version pinned statically here, not provided by the versions API.
+    image: postgis/postgis:15-3.4
     container_name: postgres
     restart: always
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     labels:
       - "dome.name=postgres"
       - "dome.description=PostgreSQL with PostGIS extension"
@@ -576,9 +645,17 @@ services:
     # Service: Caddy API Gateway
     # Purpose: Single entry point for all external traffic entering Access Node.
     # Ports: 80 (HTTP exposed), 443 (HTTPS)
-    image: __CONTAINER_IMAGE_PLACEHOLDER__
+    # No Kubernetes equivalent in gitops: version pinned statically here, not provided by the versions API.
+    image: caddy:2-alpine
     container_name: caddy
     restart: always
+    # Caddy's admin API may be disabled in the Caddyfile: just check that HTTPS is listening.
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "443"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
     ports:
       #- "80:80"
       - "443:443"
@@ -592,7 +669,7 @@ services:
       - "dome.owner=Altia"
       - "dome.type=proxy"
       - "dome.lifecycle=sandbox"
-      - "dome.dependsOn=component:account,component:agreement,component:customer-bill-management,component:customer-management,component:party-catalog,component:party-role,component:product-catalog,component:product-inventory,component:product-ordering-management,component:quote,component:resource-catalog,component:resource-function-activation,component:resource-inventory,component:service-catalog,component:service-inventory,component:usage-management,component:desmos"
+      - "dome.dependsOn=component:tm-forum-api-account,component:tm-forum-api-agreement,component:tm-forum-api-customer-bill-management,component:tm-forum-api-customer-management,component:tm-forum-api-party-catalog,component:tm-forum-api-party-role,component:tm-forum-api-product-catalog,component:tm-forum-api-product-inventory,component:tm-forum-api-product-ordering-management,component:tm-forum-api-quote,component:tm-forum-api-resource-catalog,component:tm-forum-api-resource-function-activation,component:tm-forum-api-resource-inventory,component:tm-forum-api-service-catalog,component:tm-forum-api-service-inventory,component:tm-forum-api-usage-management,component:desmos"
       - "dome.versions=any"
     networks:
       - access-node
@@ -605,12 +682,20 @@ services:
     # Note: Dozzle is disabled by default and can be enabled via Docker Compose profiles, or by running the stack with `docker compose --profile debug up -d`.
     #       If you want to enable Dozzle by default, remove or comment the `profiles` directive below, or run the stack with `docker compose --profile debug up -d`.
     container_name: dozzle
-    image: __CONTAINER_IMAGE_PLACEHOLDER__
+    # No Kubernetes equivalent in gitops: version pinned statically here, not provided by the versions API.
+    image: amir20/dozzle:latest
     environment:
       - DOZZLE_BASE=/dozzle
     ports:
       - "8888:8080"
     restart: always
+    # The image has no shell: Dozzle ships its own healthcheck command.
+    healthcheck:
+      test: ["CMD", "/dozzle", "healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
@@ -637,5 +722,5 @@ volumes:
   caddy_data:
   caddy_config:
   pgdata:
-  minio-data:
+  seaweedfs-data:
 

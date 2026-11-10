@@ -12,55 +12,55 @@
 :80 {
     # TMForum APIs
     handle_path /tmf-api/accountManagement* {
-        reverse_proxy account:8080
+        reverse_proxy tm-forum-api-account:8080
     }
     handle_path /tmf-api/agreementManagement* {
-        reverse_proxy agreement:8080
+        reverse_proxy tm-forum-api-agreement:8080
     }
     handle_path /tmf-api/customerBillManagement* {
-        reverse_proxy customer-bill-management:8080
+        reverse_proxy tm-forum-api-customer-bill-management:8080
     }
     handle_path /tmf-api/customerManagement* {
-        reverse_proxy customer-management:8080
+        reverse_proxy tm-forum-api-customer-management:8080
     }
     handle_path /tmf-api/party* {
-        reverse_proxy party-catalog:8080
+        reverse_proxy tm-forum-api-party-catalog:8080
     }
     handle_path /tmf-api/partyRoleManagement* {
-        reverse_proxy party-role:8080
+        reverse_proxy tm-forum-api-party-role:8080
     }
     handle_path /tmf-api/productCatalogManagement* {
-        reverse_proxy product-catalog:8080
+        reverse_proxy tm-forum-api-product-catalog:8080
     }
     handle_path /tmf-api/productInventory* {
-        reverse_proxy product-inventory:8080
+        reverse_proxy tm-forum-api-product-inventory:8080
     }
     handle_path /tmf-api/productOrderingManagement* {
-        reverse_proxy product-ordering-management:8080
+        reverse_proxy tm-forum-api-product-ordering-management:8080
     }
     handle_path /tmf-api/quoteManagement* {
-        reverse_proxy quote:8080
+        reverse_proxy tm-forum-api-quote:8080
     }
     handle_path /tmf-api/resourceCatalog* {
-        reverse_proxy resource-catalog:8080
+        reverse_proxy tm-forum-api-resource-catalog:8080
     }
     handle_path /tmf-api/resourceFunctionActivation* {
-        reverse_proxy resource-function-activation:8080
+        reverse_proxy tm-forum-api-resource-function-activation:8080
     }
     handle_path /tmf-api/resourceInventoryManagement* {
-        reverse_proxy resource-inventory:8080
+        reverse_proxy tm-forum-api-resource-inventory:8080
     }
     handle_path /tmf-api/serviceCatalogManagement* {
-        reverse_proxy service-catalog:8080
+        reverse_proxy tm-forum-api-service-catalog:8080
     }
     handle_path /tmf-api/serviceInventory* {
-        reverse_proxy service-inventory:8080
+        reverse_proxy tm-forum-api-service-inventory:8080
     }
     handle_path /tmf-api/usageManagement* {
-        reverse_proxy usage-management:8080
+        reverse_proxy tm-forum-api-usage-management:8080
     }
     handle_path /tmf-api/documentManagement* {
-        reverse_proxy document-management:8080
+        reverse_proxy tm-forum-api-document-management:8080
     }
 
     # DESMOS
@@ -76,9 +76,9 @@
     # If you enable proxy, Dozzle will be available to everyone in the /dozzle folder
     # ex: https://dome.mydomain.com/dozzle
     
-    handle /dozzle* {
-        reverse_proxy dozzle:8080
-    }
+    #handle /dozzle* {
+    #    reverse_proxy dozzle:8080
+    #}
 
 
     # Fallback

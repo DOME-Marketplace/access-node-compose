@@ -5,5 +5,8 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
+# The user that installed the node (it must be able to run docker): files written
+# by the updates stay owned by that user instead of root.
+User=__USER__
 WorkingDirectory=__WORKDIR__
 ExecStart=__WORKDIR__/update.sh
