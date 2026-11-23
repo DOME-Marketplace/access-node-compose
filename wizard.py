@@ -30,6 +30,15 @@ ROOT = Path(__file__).resolve().parent
 os.chdir(ROOT)
 
 EXAMPLE_SUFFIX = ".example"
+VERSION_FILE = ROOT / "VERSION"
+
+
+def package_version():
+    """Release of this package, from the VERSION file shipped with it."""
+    try:
+        return VERSION_FILE.read_text().strip() or "unknown"
+    except OSError:
+        return "unknown"
 
 COLOR = sys.stdout.isatty()
 GREEN = "\033[92m" if COLOR else ""
@@ -152,7 +161,7 @@ def create_missing_config_files():
             print(f"{YELLOW}Created {target.relative_to(ROOT)} from {example.name}: review its values.{RESET}")
 
 
-PACKAGE_FILES = ("wizard.py", "update.sh", "compose-template.yaml", "systemd")
+PACKAGE_FILES = ("wizard.py", "update.sh", "compose-template.yaml", "systemd", "VERSION")
 ENV_FILE_ITEM_RE = re.compile(r"^\s+-\s+(\S+)\s*$")
 BIND_SOURCE_RE = re.compile(r"^\s+-\s+\"?\./([^:\"]+):")
 
@@ -885,6 +894,7 @@ def step_e_run():
     versions_file = versions_file_for(environment)
     local_images, local_etag = read_versions_file(versions_file) if versions_file.exists() else ({}, None)
 
+    print(f"Package release: {package_version()}")
     if local_images:
         metadata = versions_file_metadata(versions_file)
         commit = metadata.get("gitops-commit", "?")[:7]
@@ -1073,6 +1083,7 @@ def find_step(value):
 
 def print_menu():
     print()
+    print(f"DOME Access Node, release {package_version()}\n")
     print_runtime_summary()
     print("Access-node installation status:\n")
     for step in STEPS:
@@ -1145,6 +1156,7 @@ def main():
         epilog=build_steps_epilog(),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {package_version()}")
     parser.add_argument(
         "step",
         nargs="?",

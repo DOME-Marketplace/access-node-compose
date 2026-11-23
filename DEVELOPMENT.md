@@ -14,6 +14,7 @@ This document is for whoever develops or maintains this repository. Installation
 | `.env.postgres`, `.env.scorpio`, `.env.tmforum-common` | Fixed configuration shipped with the package (users must not edit them: upgrades overwrite them). |
 | `Caddyfile.example` | Gateway routes; its upstream names must match the service names in the template. |
 | `desmos.md` | User documentation for the Desmos/DLT onboarding. |
+| `VERSION` | Release of the package (`X.Y.Z`, no `v`), shown by the wizard: installed nodes have no git, so this is how they know which release they run. |
 | `.github/` | CI workflows, the CI versions fixture and the tests. Not part of the release package. |
 
 ## How `compose.yaml` is built
@@ -39,6 +40,12 @@ One instance per DOME environment reads the GitOps repository and serves:
 - `GET <base>/ready`: JSON with the state of the generator.
 
 `<base>` is `VERSIONS_API_URL` in the user's `.env.runtime` (up to `/v1`), mandatory. Today only sbx has an instance; the URLs listed in `.env.runtime.example` for the other environments are placeholders.
+
+**Changing the API URL.** Installed nodes keep `VERSIONS_API_URL` in their own `.env.runtime`: if the URL stops answering they stop updating (the running stack is untouched, but the timer logs a warning at every run). When a URL changes:
+
+- keep the old URL answering for a transition period with an HTTPS **301** redirect to the new one: `fetch-versions` follows redirects between `https://` URLs, so installed nodes keep updating without any change on their side. Don't use 308: Python 3.8–3.10, which nodes may run, doesn't follow it;
+- update the URLs in `.env.runtime.example` and publish a new release, with the change in the release notes;
+- tell node operators to update `VERSIONS_API_URL` before the redirect is removed.
 
 `wizard.py fetch-versions` validates the answer before saving it as `versions-<env>.env`, with the ETag and the source in its header:
 
@@ -108,7 +115,54 @@ The workflows in `.github/workflows/`:
 
 ## Releases
 
-Users install from the `Source code (tar.gz)` archive of a GitHub Release. `.gitattributes` keeps development files out of it (`export-ignore`): `.github/`, `.gitattributes` and this file. The release procedure will be documented here.
+Users install from the **Source code (tar.gz)** archive that GitHub attaches to every Release: there is nothing to build or upload. GitHub creates it from the tagged commit and honors `.gitattributes`, whose `export-ignore` rules keep development files out of it (`.github/`, `.gitattributes`, `.gitignore` and this file). The archive extracts to `access-node-compose-X.Y.Z/` (GitHub drops the leading `v` of the tag); the README install and upgrade commands use `--strip-components=1` for that.
+
+### Versioning
+
+- Tags are `vX.Y.Z` ([Semantic Versioning](https://semver.org/)); `VERSION` holds the same number without the `v`.
+- While on `0.x`, mark releases as **pre-release** on GitHub (only sbx has a versions API so far).
+- Breaking changes for existing installations (renamed services, new mandatory settings, data migrations) must be described in the release notes and in the README upgrade section.
+- Never move or delete a published tag: installations and links depend on it. Fix mistakes with a new patch release.
+
+### Procedure
+
+1. **Prepare the release on a branch**: set `VERSION` to `X.Y.Z` and check that the README upgrade section covers what changed since the previous release. Open the PR, wait for CI and approval, merge into `main`.
+2. **Check the package** that GitHub will build, from the merged `main`:
+
+   ```bash
+   git fetch origin
+   git archive --format=tar --prefix=access-node-compose-X.Y.Z/ origin/main | tar t | grep -v '/$'
+   git show origin/main:VERSION
+   ```
+
+   Only user files must be listed (no `.github/`, `DEVELOPMENT.md`, `.gitattributes`, `.gitignore`), and `VERSION` must say `X.Y.Z`.
+3. **Create the GitHub Release** from `https://github.com/DOME-Marketplace/access-node-compose/releases`, button **"Create a new release"** (**"Draft a new release"** once a release exists):
+    - *Choose a tag*: type `vX.Y.Z`, then **"Create new tag: vX.Y.Z on publish"**; target `main`;
+    - *Release title*: `vX.Y.Z`;
+    - *Description*: the release notes (see below);
+    - **Set as a pre-release** while on `0.x`;
+    - **Publish release**. Don't upload any file: the archives are attached automatically. (The **Packages** section of the repository page is GitHub Packages, a registry for images and libraries: it is not used here.)
+4. **Verify the published package** by installing it in an empty directory, following the README literally, up to wizard step 3 (don't start the stack on a host where one is already running: container names and ports are fixed):
+
+   ```bash
+   mkdir /tmp/release-test && cd /tmp/release-test
+   curl -L https://github.com/DOME-Marketplace/access-node-compose/archive/refs/tags/vX.Y.Z.tar.gz \
+     | tar xz --strip-components=1
+   ./wizard.py --version     # must print X.Y.Z
+   ./wizard.py 1 && ./wizard.py 2
+   # set VERSIONS_API_URL in .env.runtime, then:
+   ./wizard.py 3
+   docker compose -f compose.yaml config -q
+   ```
+
+### Release notes
+
+Written for the people installing or upgrading a node. Link the documentation **at the tag** (`.../blob/vX.Y.Z/README.md`), not at `main`, so readers see the instructions of that release. Sections:
+
+- **Install**: the download and extract commands, and links to the README and `desmos.md`;
+- **Highlights**: what changes for users, not for maintainers;
+- **Upgrading**: what an existing installation must do by hand (or "nothing: the timer applies it");
+- **Known limitations**.
 
 ## Conventions
 

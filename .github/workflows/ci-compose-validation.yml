@@ -40,6 +40,6 @@ jobs:
       - name: Fetch versions from the sbx versions API and generate compose.yaml
         run: |
           cp .env.runtime.example .env.runtime
-          sed -i 's|^VERSIONS_API_URL=.*|VERSIONS_API_URL=https://tmf-test.dome-marketplace-sbx.org/access-node-compose-api/v1|' .env.runtime
+          sed -i 's|^VERSIONS_API_URL=.*|VERSIONS_API_URL=https://dome-marketplace-sbx.org/access-node-compose-api/v1|' .env.runtime
           ./wizard.py fetch-versions
           ./wizard.py generate
