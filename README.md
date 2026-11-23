@@ -116,6 +116,7 @@ curl https://<your-domain>/desmos/health    # from outside: Desmos through Caddy
 | Stop the stack | `docker compose down` |
 | Logs of one service | `docker compose logs -f desmos` |
 | Back up the configuration | `./wizard.py b` |
+| Installed release (include it when reporting a problem) | `./wizard.py --version` |
 | Auto-update timer status / history | `systemctl status access-node-update.timer`, `journalctl -u access-node-update.service` |
 
 **Status.** Besides state and health, `./wizard.py a` shows the version each service runs and flags pending updates in orange: versions already in `compose.yaml` but not applied yet (run step 5) and newer versions published by the versions API (run steps 3 and 5, or let the timer do it). Unhealthy or stopped services are shown in red.
